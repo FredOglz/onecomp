@@ -5,9 +5,55 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { ButtonColor, ButtonSize, ButtonType, ButtonVariant } from "./components/onec-button/onec-button";
 import { IconName } from "@onec/icons";
+export { ButtonColor, ButtonSize, ButtonType, ButtonVariant } from "./components/onec-button/onec-button";
 export { IconName } from "@onec/icons";
 export namespace Components {
+    /**
+     * Déclenche une action dans la page : envoyer un formulaire, ouvrir une fenêtre, confirmer un choix.
+     * Contrat : `docs/contracts/button.md`.
+     */
+    interface OnecButton {
+        /**
+          * Rôle de couleur. `primary` et `secondary` suivent la marque.
+          * @default 'primary'
+         */
+        "color": ButtonColor;
+        /**
+          * Désactive le bouton et le retire de la tabulation.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Action en cours : le bouton n'est plus activable mais reste focalisable.
+          * @default false
+         */
+        "loading": boolean;
+        /**
+          * Nom envoyé avec le formulaire quand ce bouton le soumet.
+         */
+        "name"?: string;
+        /**
+          * Taille : 32, 40 ou 48 px de haut.
+          * @default 'medium'
+         */
+        "size": ButtonSize;
+        /**
+          * Comportement dans un formulaire.
+          * @default 'button'
+         */
+        "type": ButtonType;
+        /**
+          * Valeur envoyée avec le formulaire quand ce bouton le soumet.
+         */
+        "value"?: string;
+        /**
+          * Niveau d'emphase.
+          * @default 'contained'
+         */
+        "variant": ButtonVariant;
+    }
     /**
      * Affiche une icône du jeu onec (Lucide), en SVG inline.
      * La couleur suit celle du texte parent (`currentColor`). La taille vient des tokens
@@ -32,6 +78,16 @@ export namespace Components {
 }
 declare global {
     /**
+     * Déclenche une action dans la page : envoyer un formulaire, ouvrir une fenêtre, confirmer un choix.
+     * Contrat : `docs/contracts/button.md`.
+     */
+    interface HTMLOnecButtonElement extends Components.OnecButton, HTMLStencilElement {
+    }
+    var HTMLOnecButtonElement: {
+        prototype: HTMLOnecButtonElement;
+        new (): HTMLOnecButtonElement;
+    };
+    /**
      * Affiche une icône du jeu onec (Lucide), en SVG inline.
      * La couleur suit celle du texte parent (`currentColor`). La taille vient des tokens
      * `size.icon.*` ; un parent peut l'imposer avec la propriété CSS `--onec-icon-size`
@@ -44,12 +100,61 @@ declare global {
         new (): HTMLOnecIconElement;
     };
     interface HTMLElementTagNameMap {
+        "onec-button": HTMLOnecButtonElement;
         "onec-icon": HTMLOnecIconElement;
     }
 }
 declare namespace LocalJSX {
     type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K]?: never };
 
+    /**
+     * Déclenche une action dans la page : envoyer un formulaire, ouvrir une fenêtre, confirmer un choix.
+     * Contrat : `docs/contracts/button.md`.
+     */
+    interface OnecButton {
+        /**
+          * Rôle de couleur. `primary` et `secondary` suivent la marque.
+          * @default 'primary'
+         */
+        "color"?: ButtonColor;
+        /**
+          * Désactive le bouton et le retire de la tabulation.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
+          * Action en cours : le bouton n'est plus activable mais reste focalisable.
+          * @default false
+         */
+        "loading"?: boolean;
+        /**
+          * Nom envoyé avec le formulaire quand ce bouton le soumet.
+         */
+        "name"?: string;
+        /**
+          * Taille : 32, 40 ou 48 px de haut.
+          * @default 'medium'
+         */
+        "size"?: ButtonSize;
+        /**
+          * Comportement dans un formulaire.
+          * @default 'button'
+         */
+        "type"?: ButtonType;
+        /**
+          * Valeur envoyée avec le formulaire quand ce bouton le soumet.
+         */
+        "value"?: string;
+        /**
+          * Niveau d'emphase.
+          * @default 'contained'
+         */
+        "variant"?: ButtonVariant;
+    }
     /**
      * Affiche une icône du jeu onec (Lucide), en SVG inline.
      * La couleur suit celle du texte parent (`currentColor`). La taille vient des tokens
@@ -72,6 +177,16 @@ declare namespace LocalJSX {
         "size"?: 'small' | 'medium' | 'large';
     }
 
+    interface OnecButtonAttributes {
+        "variant": ButtonVariant;
+        "color": ButtonColor;
+        "size": ButtonSize;
+        "disabled": boolean;
+        "loading": boolean;
+        "type": ButtonType;
+        "name": string;
+        "value": string;
+    }
     interface OnecIconAttributes {
         "name": IconName;
         "size": 'small' | 'medium' | 'large';
@@ -79,6 +194,7 @@ declare namespace LocalJSX {
     }
 
     interface IntrinsicElements {
+        "onec-button": Omit<OnecButton, keyof OnecButtonAttributes> & { [K in keyof OnecButton & keyof OnecButtonAttributes]?: OnecButton[K] } & { [K in keyof OnecButton & keyof OnecButtonAttributes as `attr:${K}`]?: OnecButtonAttributes[K] } & { [K in keyof OnecButton & keyof OnecButtonAttributes as `prop:${K}`]?: OnecButton[K] };
         "onec-icon": Omit<OnecIcon, keyof OnecIconAttributes> & { [K in keyof OnecIcon & keyof OnecIconAttributes]?: OnecIcon[K] } & { [K in keyof OnecIcon & keyof OnecIconAttributes as `attr:${K}`]?: OnecIconAttributes[K] } & { [K in keyof OnecIcon & keyof OnecIconAttributes as `prop:${K}`]?: OnecIcon[K] } & OneOf<"name", OnecIcon["name"], OnecIconAttributes["name"]>;
     }
 }
@@ -86,6 +202,11 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            /**
+             * Déclenche une action dans la page : envoyer un formulaire, ouvrir une fenêtre, confirmer un choix.
+             * Contrat : `docs/contracts/button.md`.
+             */
+            "onec-button": LocalJSX.IntrinsicElements["onec-button"] & JSXBase.HTMLAttributes<HTMLOnecButtonElement>;
             /**
              * Affiche une icône du jeu onec (Lucide), en SVG inline.
              * La couleur suit celle du texte parent (`currentColor`). La taille vient des tokens

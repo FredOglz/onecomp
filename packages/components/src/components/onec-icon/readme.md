@@ -1,7 +1,5 @@
 # onec-icon
 
-
-
 <!-- Auto Generated Below -->
 
 
@@ -28,6 +26,19 @@ La couleur suit celle du texte parent (`currentColor`). La taille vient des toke
 | ------- | ------------------ |
 | `"svg"` | L'élément `<svg>`. |
 
+
+## Dependencies
+
+### Used by
+
+ - [onec-button](../onec-button)
+
+### Graph
+```mermaid
+graph TD;
+  onec-button --> onec-icon
+  style onec-icon fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 
