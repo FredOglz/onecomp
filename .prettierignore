@@ -1,3 +1,7 @@
 node_modules
 dist
+loader
 pnpm-lock.yaml
+# Fichiers générés par Stencil
+packages/components/src/components.d.ts
+packages/components/src/**/readme.md
