@@ -18,11 +18,11 @@ Le Button doit exister dans quatre thèmes : deux marques (B2C, B2B) et deux sch
 
 ### Trois niveaux
 
-| Niveau | Rôle | Exemple de nom | Change avec |
-| --- | --- | --- | --- |
-| Primitives | Valeurs brutes, sans sens | `color.orange.600`, `space.4`, `radius.2` | Rien |
-| Sémantiques | Intention d'usage | `color.action.primary.background`, `color.text.default`, `color.focus.ring` | Marque, schéma |
-| Composant | Décision propre au composant | `button.contained.primary.background.hover` | Rien (pointe vers les sémantiques) |
+| Niveau      | Rôle                         | Exemple de nom                                                              | Change avec                        |
+| ----------- | ---------------------------- | --------------------------------------------------------------------------- | ---------------------------------- |
+| Primitives  | Valeurs brutes, sans sens    | `color.orange.600`, `space.4`, `radius.2`                                   | Rien                               |
+| Sémantiques | Intention d'usage            | `color.action.primary.background`, `color.text.default`, `color.focus.ring` | Marque, schéma                     |
+| Composant   | Décision propre au composant | `button.contained.primary.background.hover`                                 | Rien (pointe vers les sémantiques) |
 
 Le composant ne lit que ses tokens composant. Un token composant pointe toujours vers un sémantique, jamais vers une valeur brute.
 
@@ -33,12 +33,12 @@ Le composant ne lit que ses tokens composant. Un token composant pointe toujours
 
 Les sémantiques du schéma pointent vers les alias de marque, d'où quatre combinaisons sans dupliquer de valeur.
 
-| Fichier source | Contenu |
-| --- | --- |
-| `primitives.json` | Palettes, espacements, rayons, typographie |
-| `brand/b2c.json`, `brand/b2b.json` | Alias `brand.*` vers les palettes |
+| Fichier source                          | Contenu                                       |
+| --------------------------------------- | --------------------------------------------- |
+| `primitives.json`                       | Palettes, espacements, rayons, typographie    |
+| `brand/b2c.json`, `brand/b2b.json`      | Alias `brand.*` vers les palettes             |
 | `scheme/light.json`, `scheme/dark.json` | Sémantiques, vers `brand.*` et les primitives |
-| `components/button.json` | Tokens `button.*`, vers les sémantiques |
+| `components/button.json`                | Tokens `button.*`, vers les sémantiques       |
 
 ### Sorties
 
@@ -48,12 +48,12 @@ Les sémantiques du schéma pointent vers les alias de marque, d'où quatre comb
 
 ### Figma (P7)
 
-| Collection | Modes |
-| --- | --- |
-| Primitives | un seul |
-| Brand | B2C, B2B |
-| Scheme | Light, Dark |
-| Components | un seul |
+| Collection | Modes       |
+| ---------- | ----------- |
+| Primitives | un seul     |
+| Brand      | B2C, B2B    |
+| Scheme     | Light, Dark |
+| Components | un seul     |
 
 Mêmes noms qu'en code, avec `/` à la place de `.` (`button/contained/primary/background/hover`). Scopes de variables posés explicitement (fond, texte, bordure, espacement, rayon).
 

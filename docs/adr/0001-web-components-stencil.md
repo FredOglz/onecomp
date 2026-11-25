@@ -16,11 +16,11 @@ Contraintes :
 
 ## Options
 
-| Option | Pour | Contre |
-| --- | --- | --- |
-| **Stencil** | Wrappers React et Angular générés à chaque build, y compris la liaison aux formulaires Angular ; JSX et décorateurs, familiers aux devs React et Angular ; support de `formAssociated` ; chargement paresseux | Outil plus directif ; écosystème plus petit que Lit ; dépend de la feuille de route de l'équipe qui le maintient |
-| **Lit** | Très léger (≈ 5 ko), très proche du standard, large adoption | Wrappers à écrire et maintenir à la main pour chaque framework ; liaison aux formulaires Angular à coder composant par composant |
-| **Deux implémentations natives** (React et Angular) | Aucune couche intermédiaire | Deux codes à aligner : c'est le problème qu'on cherche à éviter |
+| Option                                              | Pour                                                                                                                                                                                                          | Contre                                                                                                                           |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| **Stencil**                                         | Wrappers React et Angular générés à chaque build, y compris la liaison aux formulaires Angular ; JSX et décorateurs, familiers aux devs React et Angular ; support de `formAssociated` ; chargement paresseux | Outil plus directif ; écosystème plus petit que Lit ; dépend de la feuille de route de l'équipe qui le maintient                 |
+| **Lit**                                             | Très léger (≈ 5 ko), très proche du standard, large adoption                                                                                                                                                  | Wrappers à écrire et maintenir à la main pour chaque framework ; liaison aux formulaires Angular à coder composant par composant |
+| **Deux implémentations natives** (React et Angular) | Aucune couche intermédiaire                                                                                                                                                                                   | Deux codes à aligner : c'est le problème qu'on cherche à éviter                                                                  |
 
 ## Décision
 

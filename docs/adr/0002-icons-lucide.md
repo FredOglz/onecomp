@@ -10,13 +10,13 @@ Le Button accepte une icône avant et après son libellé. Il faut une biblioth�
 
 ## Options
 
-| Option | Pour | Contre |
-| --- | --- | --- |
-| **Lucide** | ≈ 1 600 icônes au trait, grille 24 px, épaisseur réglable ; licence ISC ; SVG statiques disponibles ; fichier Figma communautaire | Un seul style (trait) |
-| Phosphor | 6 graisses ; paquet Web Components officiel ; MIT | Plus volumineux ; graisses peu utiles pour un seul bouton |
-| Remix Icon | ≈ 3 000 icônes, trait et plein | Licence propre à vérifier pour un usage client |
-| Ionicons | Web Component natif ; MIT | Style marqué, moins d'icônes |
-| Material Symbols | 3 000+ icônes | Distribué surtout en police, ce qui va contre une source SVG unique |
+| Option           | Pour                                                                                                                              | Contre                                                              |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| **Lucide**       | ≈ 1 600 icônes au trait, grille 24 px, épaisseur réglable ; licence ISC ; SVG statiques disponibles ; fichier Figma communautaire | Un seul style (trait)                                               |
+| Phosphor         | 6 graisses ; paquet Web Components officiel ; MIT                                                                                 | Plus volumineux ; graisses peu utiles pour un seul bouton           |
+| Remix Icon       | ≈ 3 000 icônes, trait et plein                                                                                                    | Licence propre à vérifier pour un usage client                      |
+| Ionicons         | Web Component natif ; MIT                                                                                                         | Style marqué, moins d'icônes                                        |
+| Material Symbols | 3 000+ icônes                                                                                                                     | Distribué surtout en police, ce qui va contre une source SVG unique |
 
 ## Décision
 

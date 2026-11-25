@@ -2,6 +2,26 @@
 
 Un composant de design system, de bout en bout : contrat, tokens, Web Component, tests, documentation et export Figma.
 
-- Contrats : [`docs/contracts/`](docs/contracts/)
-- Décisions (ADR) : [`docs/adr/`](docs/adr/)
-- Journal des difficultés : [`docs/journal.md`](docs/journal.md)
+## Structure
+
+```
+docs/
+  contracts/      contrats de composants (source de vérité)
+  adr/            décisions d'architecture
+  journal.md      journal des difficultés et du temps
+packages/
+  tokens/         @onec/tokens : tokens DTCG et thèmes
+  icons/          @onec/icons : icônes et <onec-icon>
+  components/     @onec/components : Web Components Stencil et wrappers
+apps/             démos React et Angular
+```
+
+## Démarrer
+
+```sh
+corepack enable
+pnpm install
+pnpm build
+```
+
+Voir [CONTRIBUTING.md](CONTRIBUTING.md) pour le circuit des modifications et le format des commits.
