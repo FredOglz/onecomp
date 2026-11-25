@@ -1,0 +1,55 @@
+name: Mettre à jour les captures
+
+# Les captures de référence sont produites par la CI, pour que les tests visuels comparent
+# toujours des images rendues sur la même machine. Poser le label « mettre-a-jour-captures »
+# sur une pull request : ce workflow régénère les images, les committe sur la branche et
+# retire le label. Pousser ensuite un commit relance la CI avec les nouvelles références.
+on:
+  pull_request:
+    types: [labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    if: github.event.label.name == 'mettre-a-jour-captures' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: pnpm --filter @onec/components build-storybook
+      - run: pnpm --filter @onec/components exec playwright install --with-deps chromium
+
+      - name: Régénérer les captures
+        run: pnpm --filter @onec/components e2e e2e/button.visual.spec.ts --update-snapshots=all
+
+      - name: Committer les nouvelles captures
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add packages/components/e2e/__screenshots__
+          if git diff --cached --quiet; then
+            echo "Captures inchangées."
+          else
+            git commit -m "test(components): met à jour les captures de référence"
+            git push
+          fi
+
+      - name: Retirer le label
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh pr edit ${{ github.event.pull_request.number }} --remove-label mettre-a-jour-captures
