@@ -2,6 +2,10 @@
 
 Un composant de design system, de bout en bout : contrat, tokens, Web Component, tests, documentation et export Figma.
 
+- **Documentation** : [Storybook](https://fredoglz.github.io/onecomp/) (publié à chaque fusion sur `main`)
+- **Contrat du Button** : [docs/contracts/button.md](docs/contracts/button.md)
+- **Agents IA** : [AGENTS.md](AGENTS.md)
+
 ## Structure
 
 ```
@@ -24,6 +28,8 @@ apps/             démos React et Angular
 corepack enable
 pnpm install
 pnpm build
+pnpm test
+pnpm --filter @onec/components storybook
 ```
 
 Voir [CONTRIBUTING.md](CONTRIBUTING.md) pour le circuit des modifications et le format des commits.

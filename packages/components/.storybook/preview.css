@@ -10,3 +10,8 @@ body {
   color: var(--onec-color-text-default);
   font-family: var(--onec-font-family-sans);
 }
+
+/* Dans les pages de doc, chaque exemple prend la hauteur de son contenu. */
+.onec-theme--docs {
+  min-height: 0;
+}

@@ -30,6 +30,12 @@ export const config: Config = {
     }),
     { type: 'docs-readme', footer: '' },
     { type: 'docs-json', file: 'dist/docs.json' },
+    // Données pour l'éditeur (VS Code) : complétion des balises et attributs onec-*.
+    {
+      type: 'docs-vscode',
+      file: 'dist/vscode-data.json',
+      sourceCodeBaseUrl: 'https://github.com/FredOglz/onecomp/blob/main/packages/components',
+    },
   ],
   testing: {
     browserHeadless: 'shell',
