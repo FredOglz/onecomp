@@ -1,6 +1,6 @@
 {
   "name": "@onec/angular",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "license": "MIT",
   "description": "Composants Angular (standalone) des Web Components onec, générés par Stencil.",
