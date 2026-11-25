@@ -1,0 +1,17 @@
+{
+  "$comment": "Icônes Lucide importées dans svg/. Ajouter un nom ici puis lancer pnpm --filter @onec/icons import.",
+  "lucide": [
+    "arrow-left",
+    "arrow-right",
+    "check",
+    "chevron-down",
+    "download",
+    "external-link",
+    "loader-circle",
+    "plus",
+    "search",
+    "send",
+    "trash-2",
+    "x"
+  ]
+}

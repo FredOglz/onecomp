@@ -11,7 +11,7 @@ docs/
   journal.md      journal des difficultés et du temps
 packages/
   tokens/         @onec/tokens : tokens DTCG et thèmes
-  icons/          @onec/icons : icônes et <onec-icon>
+  icons/          @onec/icons : icônes Lucide (SVG sources)
   components/     @onec/components : Web Components Stencil et wrappers
 apps/             démos React et Angular
 ```

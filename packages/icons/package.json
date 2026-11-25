@@ -2,5 +2,27 @@
   "name": "@onec/icons",
   "version": "0.0.0",
   "private": true,
-  "license": "MIT"
+  "license": "MIT",
+  "description": "Icônes Lucide en SVG sources pour le design system onec.",
+  "type": "module",
+  "files": [
+    "dist",
+    "svg",
+    "LICENSE-lucide"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./svg/*": "./svg/*"
+  },
+  "scripts": {
+    "import": "node scripts/import.mjs",
+    "build": "node scripts/build.mjs"
+  },
+  "devDependencies": {
+    "lucide-static": "1.80.0"
+  }
 }

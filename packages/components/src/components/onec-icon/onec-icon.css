@@ -1,0 +1,24 @@
+:host {
+  --_size: var(--onec-size-icon-medium, 16px);
+
+  display: inline-flex;
+  flex-shrink: 0;
+  inline-size: var(--onec-icon-size, var(--_size));
+  block-size: var(--onec-icon-size, var(--_size));
+  color: inherit;
+  line-height: 0;
+  vertical-align: middle;
+}
+
+:host([size='small']) {
+  --_size: var(--onec-size-icon-small, 16px);
+}
+
+:host([size='large']) {
+  --_size: var(--onec-size-icon-large, 20px);
+}
+
+svg {
+  inline-size: 100%;
+  block-size: 100%;
+}
