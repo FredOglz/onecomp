@@ -67,6 +67,7 @@ pnpm install
 pnpm build                                  # tokens, icônes, composants, wrappers, démos
 pnpm test                                   # contrastes AA + tests unitaires
 pnpm format:check
+node scripts/pack.mjs                       # archives des paquets dans release/ (après pnpm build)
 pnpm --filter @onec/components storybook    # Storybook local (port 6006)
 pnpm --filter @onec/components build-storybook && pnpm --filter @onec/components e2e
 ```

@@ -1,6 +1,6 @@
 {
   "name": "@onec/tokens",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "license": "MIT",
   "description": "Tokens DTCG et thèmes (marque × schéma) du design system onec.",

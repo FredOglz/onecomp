@@ -5,6 +5,8 @@ Un composant de design system, de bout en bout : contrat, tokens, Web Component,
 - **Documentation** : [Storybook](https://fredoglz.github.io/onecomp/) (publié à chaque fusion sur `main`)
 - **Contrat du Button** : [docs/contracts/button.md](docs/contracts/button.md)
 - **Agents IA** : [AGENTS.md](AGENTS.md)
+- **Versions** : [CHANGELOG.md](CHANGELOG.md) et [releases GitHub](https://github.com/FredOglz/onecomp/releases) (archives des paquets jointes)
+- **Figma** : bibliothèque one-comp, même numéro de version que le code
 
 ## Structure
 
@@ -31,5 +33,11 @@ pnpm build
 pnpm test
 pnpm --filter @onec/components storybook
 ```
+
+## Publier une version
+
+1. Monter la version dans tous les `package.json` et ajouter la section au [CHANGELOG.md](CHANGELOG.md), dans une PR.
+2. Après fusion, pousser le tag : `git tag v0.1.0 && git push origin v0.1.0`. Le workflow Release construit, teste et joint les archives (`node scripts/pack.mjs`).
+3. Publier la bibliothèque Figma avec le même numéro et le lien vers la release.
 
 Voir [CONTRIBUTING.md](CONTRIBUTING.md) pour le circuit des modifications et le format des commits.
