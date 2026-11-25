@@ -40,10 +40,14 @@ const preview: Preview = {
   },
   initialGlobals: { brand: 'b2c', theme: 'light' },
   decorators: [
-    (story, { globals, parameters }) =>
+    (story, { globals, parameters, viewMode }) =>
       parameters.themes === 'all'
         ? story()
-        : html`<div class="onec-theme" data-brand=${globals.brand} data-theme=${globals.theme}>
+        : html`<div
+            class="onec-theme ${viewMode === 'docs' ? 'onec-theme--docs' : ''}"
+            data-brand=${globals.brand}
+            data-theme=${globals.theme}
+          >
             ${story()}
           </div>`,
   ],

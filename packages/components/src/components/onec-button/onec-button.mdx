@@ -1,0 +1,119 @@
+import { Meta, Canvas, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as ButtonStories from './onec-button.stories';
+
+<Meta of={ButtonStories} />
+
+# Button
+
+Le Button déclenche une action dans la page : envoyer un formulaire, ouvrir une fenêtre, confirmer un choix.
+Il existe en un seul composant, `<onec-button>`, utilisable tel quel en HTML, en React (`@onec/react`) et en Angular (`@onec/angular`).
+
+La source de vérité est le [contrat du Button](https://github.com/FredOglz/onecomp/blob/main/docs/contracts/button.md) : cette page en reprend l'essentiel.
+
+<Canvas of={ButtonStories.Playground} />
+<Controls of={ButtonStories.Playground} />
+
+## Quand l'utiliser
+
+| À faire                                                         | À éviter                                                   |
+| --------------------------------------------------------------- | ---------------------------------------------------------- |
+| Lancer une action : enregistrer, envoyer, ajouter, supprimer    | Naviguer vers une autre page : c'est le rôle du futur Link |
+| Un verbe d'action, trois mots au plus : « Ajouter un véhicule » | Un bouton sans texte : utiliser le futur IconButton        |
+| Un seul bouton `contained` par zone, pour l'action principale   | Plusieurs actions principales côte à côte                  |
+| Dire le signal dans le libellé : « Supprimer » en `error`       | Compter sur la couleur seule : « OK » en rouge             |
+
+## Variantes et couleurs
+
+`contained` porte l'action principale, `outlined` les actions secondaires, `ghost` les actions tertiaires ou répétées.
+Les couleurs sont des rôles : `primary` et `secondary` suivent la marque (B2C ou B2B), `neutral` sert les actions sans marque,
+`success`, `warning`, `error` et `info` portent un signal.
+
+<Canvas of={ButtonStories.Variants} />
+
+## Tailles
+
+| Taille   | Hauteur | Texte | Icône | Usage                                       |
+| -------- | ------- | ----- | ----- | ------------------------------------------- |
+| `small`  | 32 px   | 12 px | 16 px | Tableaux, barres d'outils denses            |
+| `medium` | 40 px   | 14 px | 16 px | Par défaut                                  |
+| `large`  | 48 px   | 16 px | 20 px | Écrans tactiles, appel à l'action principal |
+
+<Canvas of={ButtonStories.Sizes} />
+
+## Icônes
+
+Une `<onec-icon>` dans le slot `icon-start` ou `icon-end`. Les icônes sont décoratives : le libellé suffit à nommer l'action.
+On parle de début et de fin, pas de gauche et de droite : en lecture de droite à gauche, elles s'inversent sans changer le code.
+
+<Canvas of={ButtonStories.WithIcons} />
+
+## États
+
+- **Désactivé** : couleurs atténuées, retiré de la tabulation. Préférer un message qui explique pourquoi l'action est impossible.
+- **Chargement** : un spinner remplace l'icône de début (ou s'ajoute devant le libellé), le bouton reste focalisable et est annoncé « occupé ». Il n'est plus activable : pas de double envoi.
+- **Focus clavier** : anneau de 2 px décalé de 2 px, visible seulement à la navigation clavier.
+
+<Canvas of={ButtonStories.States} />
+
+## Formulaires
+
+`type="submit"` envoie le formulaire parent avec `name` et `value`, `type="reset"` le réinitialise, et un `<fieldset disabled>` désactive le bouton.
+
+<Canvas of={ButtonStories.Form} />
+
+## Accessibilité
+
+- Un vrai `<button>` natif dans le Shadow DOM : Tab pour l'atteindre, Entrée et Espace pour l'activer.
+- Le nom accessible est le libellé. Un bouton sans libellé affiche un avertissement en console.
+- Contrastes AA dans les 4 thèmes : texte à 4,5:1, bordure `outlined` et anneau de focus à 3:1. Vérifiés en CI à partir des tokens, puis par axe dans le navigateur.
+- Le spinner s'arrête si le système demande moins d'animations ; le mode contraste élevé de Windows est pris en charge.
+
+## Thèmes
+
+La marque et le schéma se choisissent dans la barre d'outils de Storybook. Dans une application, ils se posent ensemble sur un conteneur :
+
+```html
+<link rel="stylesheet" href="@onec/tokens/dist/css/tokens.css" />
+<div data-brand="b2b" data-theme="dark">
+  <onec-button>Enregistrer</onec-button>
+</div>
+```
+
+<Canvas of={ButtonStories.AllThemes} />
+
+## Tokens
+
+Le composant ne lit que ses tokens `--onec-button-*`, qui pointent vers les tokens sémantiques. Changer une couleur se fait dans `packages/tokens`, jamais dans le composant.
+
+| Groupe      | Tokens                                                                                                                    |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Couleurs    | `--onec-button-{variant}-{color}-{background,border,foreground}-{état}`                                                   |
+| Dimensions  | `--onec-button-height-{size}`, `-padding-x-{size}`, `-gap-{size}`, `-icon-size-{size}`, `-border-radius`, `-border-width` |
+| Typographie | `--onec-button-font-family`, `-font-size-{size}`, `-font-weight`, `-line-height`                                          |
+| Focus       | `--onec-button-focus-ring-{color,width,offset}`                                                                           |
+
+`{état}` vaut `default`, `hover`, `active` ou `disabled`.
+
+## Code
+
+```html
+<onec-button variant="outlined" color="neutral" size="large">
+  <onec-icon slot="icon-start" name="download"></onec-icon>
+  Télécharger
+</onec-button>
+```
+
+```tsx
+import { OnecButton, OnecIcon } from '@onec/react';
+
+<OnecButton variant="outlined" color="neutral" onClick={download}>
+  <OnecIcon slot="icon-start" name="download" />
+  Télécharger
+</OnecButton>;
+```
+
+```ts
+// Angular (standalone)
+import { OnecButton, OnecIcon } from '@onec/angular';
+@Component({ imports: [OnecButton, OnecIcon], template: `<onec-button (click)="download()">Télécharger</onec-button>` })
+```
