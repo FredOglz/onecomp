@@ -7,3 +7,6 @@ packages/components/src/components.d.ts
 packages/components/src/**/readme.md
 packages/react/src/generated
 packages/angular/src/generated
+storybook-static
+test-results
+playwright-report

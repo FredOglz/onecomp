@@ -33,5 +33,7 @@ export const config: Config = {
   ],
   testing: {
     browserHeadless: 'shell',
+    // e2e/ contient les tests Playwright, lancés à part avec `pnpm e2e`.
+    testPathIgnorePatterns: ['/node_modules/', '/e2e/'],
   },
 };

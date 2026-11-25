@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+}
+
+.onec-theme {
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding: 24px;
+  background: var(--onec-color-surface-default);
+  color: var(--onec-color-text-default);
+  font-family: var(--onec-font-family-sans);
+}

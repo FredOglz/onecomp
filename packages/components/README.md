@@ -39,3 +39,15 @@ Les styles sont écrits en Sass (`*.scss`) : une boucle relie chaque combinaison
 | `pnpm test`  | Tests unitaires (spec)                                            |
 
 Les fichiers `src/components.d.ts` et `src/components/*/readme.md` sont générés par Stencil au build : les committer, ne pas les modifier à la main (sauf le texte au-dessus de « Auto Generated Below »).
+
+## Tests navigateur
+
+`e2e/` contient trois familles de tests Playwright, lancés sur les stories du Storybook statique :
+
+| Fichier                       | Vérifie                                                                |
+| ----------------------------- | ---------------------------------------------------------------------- |
+| `button.interactions.spec.ts` | Clic, clavier (Tab, Entrée, Espace), formulaire, désactivé, chargement |
+| `button.a11y.spec.ts`         | axe, WCAG 2.2 AA, sur la matrice des 4 thèmes                          |
+| `button.visual.spec.ts`       | Captures de référence : matrice 4 thèmes, survol, focus                |
+
+Les captures de référence sont produites par la CI GitHub : le rendu du texte varie d'une machine à l'autre, et une capture locale ne correspond pas à celle de la CI. Après un changement visuel voulu, poser le label `mettre-a-jour-captures` sur la pull request : un workflow régénère les images et les committe sur la branche. Vérifier les images dans la PR avant de fusionner. En local, `pnpm e2e e2e/button.interactions.spec.ts e2e/button.a11y.spec.ts` lance les autres tests.
