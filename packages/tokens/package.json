@@ -13,10 +13,11 @@
     "./css": "./dist/css/tokens.css",
     "./json/*": "./dist/json/*.json",
     "./scss/*": "./dist/scss/_*.scss",
-    "./src/*": "./src/*"
+    "./src/*": "./src/*",
+    "./figma": "./dist/figma/variables.json"
   },
   "scripts": {
-    "build": "node scripts/build.mjs",
+    "build": "node scripts/build.mjs && node scripts/figma.mjs",
     "test": "node scripts/check.mjs"
   },
   "devDependencies": {
