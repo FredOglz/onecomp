@@ -1,0 +1,111 @@
+{
+  "size": {
+    "$type": "dimension",
+    "control": {
+      "small": {
+        "$value": "{space.8}"
+      },
+      "medium": {
+        "$value": "{space.10}"
+      },
+      "large": {
+        "$value": "{space.12}"
+      }
+    },
+    "icon": {
+      "small": {
+        "$value": "{space.4}"
+      },
+      "medium": {
+        "$value": "{space.4}"
+      },
+      "large": {
+        "$value": "{space.5}"
+      }
+    }
+  },
+  "space": {
+    "$type": "dimension",
+    "control": {
+      "padding-x": {
+        "small": {
+          "$value": "{space.3}"
+        },
+        "medium": {
+          "$value": "{space.4}"
+        },
+        "large": {
+          "$value": "{space.4}"
+        }
+      },
+      "gap": {
+        "small": {
+          "$value": "{space.2}"
+        },
+        "medium": {
+          "$value": "{space.2}"
+        },
+        "large": {
+          "$value": "{space.4}"
+        }
+      }
+    }
+  },
+  "radius": {
+    "$type": "dimension",
+    "control": {
+      "$value": "{radius.md}"
+    }
+  },
+  "border-width": {
+    "$type": "dimension",
+    "control": {
+      "$value": "{border-width.thin}"
+    }
+  },
+  "focus": {
+    "ring": {
+      "$type": "dimension",
+      "width": {
+        "$value": "{border-width.thick}"
+      },
+      "offset": {
+        "$value": "{space.0-5}"
+      }
+    }
+  },
+  "font": {
+    "family": {
+      "$type": "fontFamily",
+      "base": {
+        "$value": "{font.family.sans}"
+      }
+    },
+    "size": {
+      "$type": "dimension",
+      "control": {
+        "small": {
+          "$value": "{font.size.xs}"
+        },
+        "medium": {
+          "$value": "{font.size.sm}"
+        },
+        "large": {
+          "$value": "{font.size.md}"
+        }
+      }
+    },
+    "weight": {
+      "$type": "fontWeight",
+      "strong": {
+        "$value": "{font.weight.semibold}"
+      }
+    },
+    "line-height": {
+      "$type": "number",
+      "control": {
+        "$value": "{font.line-height.tight}"
+      }
+    }
+  }
+}

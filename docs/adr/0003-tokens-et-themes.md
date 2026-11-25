@@ -14,7 +14,7 @@ Le Button doit exister dans quatre thèmes : deux marques (B2C, B2B) et deux sch
 
 - Format **DTCG** (`$value`, `$type`, `$description`), fichiers JSON dans `packages/tokens/src/`.
 - Ces fichiers sont la seule source. Les CSS, SCSS, JSON de sortie et les variables Figma en sont générés.
-- Génération avec **Style Dictionary** (v4, support natif DTCG).
+- Génération avec **Style Dictionary** (v5, support natif DTCG).
 
 ### Trois niveaux
 
@@ -33,16 +33,17 @@ Le composant ne lit que ses tokens composant. Un token composant pointe toujours
 
 Les sémantiques du schéma pointent vers les alias de marque, d'où quatre combinaisons sans dupliquer de valeur.
 
-| Fichier source                          | Contenu                                       |
-| --------------------------------------- | --------------------------------------------- |
-| `primitives.json`                       | Palettes, espacements, rayons, typographie    |
-| `brand/b2c.json`, `brand/b2b.json`      | Alias `brand.*` vers les palettes             |
-| `scheme/light.json`, `scheme/dark.json` | Sémantiques, vers `brand.*` et les primitives |
-| `components/button.json`                | Tokens `button.*`, vers les sémantiques       |
+| Fichier source                          | Contenu                                                                     |
+| --------------------------------------- | --------------------------------------------------------------------------- |
+| `primitives.json`                       | Palettes, espacements, rayons, typographie                                  |
+| `semantic.json`                         | Sémantiques indépendants du thème (tailles de contrôle, focus, typographie) |
+| `brand/b2c.json`, `brand/b2b.json`      | Alias `brand.*` vers les palettes                                           |
+| `scheme/light.json`, `scheme/dark.json` | Sémantiques, vers `brand.*` et les primitives                               |
+| `components/button.json`                | Tokens `button.*`, vers les sémantiques                                     |
 
 ### Sorties
 
-- CSS : custom properties sur `:root`, surchargées par `[data-brand="b2b"]` et `[data-theme="dark"]` ; les deux attributs se combinent librement sur n'importe quel conteneur.
+- CSS : custom properties sur `:root`, surchargées par `[data-brand="b2b"]` et `[data-theme="dark"]`. Les deux attributs se posent **ensemble sur le même élément** : une custom property qui en référence une autre est calculée là où elle est déclarée, puis héritée telle quelle, donc un `data-brand` seul sur un conteneur imbriqué ne recalculerait pas les couleurs héritées. Les tokens composant sont redéclarés sur chaque élément thémé pour suivre le thème local.
 - SCSS : mêmes valeurs en variables, pour les projets qui en ont besoin.
 - JSON aplati : pour Storybook et pour les agents IA.
 
