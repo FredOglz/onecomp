@@ -24,7 +24,7 @@ Le Button déclenche une action dans la page : envoyer un formulaire, ouvrir une
 ┌──────────────────────────────────────────┐
 │  [icon-start]   Libellé   [icon-end]     │   ← base (conteneur)
 └──────────────────────────────────────────┘
-         ↘ en chargement : spinner à la place de icon-start
+         ↘ en chargement : spinner à la place de icon-start (ou devant le libellé sans icône)
 ```
 
 | Élément      | Obligatoire | Description                                                                   |
@@ -109,14 +109,14 @@ Le texte est exprimé en rem dans le code (12 px = 0,75 rem) pour suivre le rég
 
 ## 6. États
 
-| État       | Déclencheur                      | Rendu                                                                   | Comportement                                         |
-| ---------- | -------------------------------- | ----------------------------------------------------------------------- | ---------------------------------------------------- |
-| `default`  | —                                | Couleurs de base                                                        | Activable                                            |
-| `hover`    | Pointeur au-dessus               | Fond ou teinte plus soutenu                                             | Activable                                            |
-| `active`   | Pression en cours                | Fond encore plus soutenu                                                | Activable                                            |
-| `focus`    | Focus clavier (`:focus-visible`) | Anneau de focus de 2 px, décalé de 2 px, en plus de l'état courant      | Activable                                            |
-| `disabled` | `disabled`                       | Couleurs atténuées, curseur `not-allowed`                               | Non activable, retiré de la tabulation               |
-| `loading`  | `loading`                        | Spinner à la place de `icon-start`, libellé conservé, largeur inchangée | Non activable, reste focalisable, annoncé « occupé » |
+| État       | Déclencheur                      | Rendu                                                                                                                                                                           | Comportement                                         |
+| ---------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| `default`  | —                                | Couleurs de base                                                                                                                                                                | Activable                                            |
+| `hover`    | Pointeur au-dessus               | Fond ou teinte plus soutenu                                                                                                                                                     | Activable                                            |
+| `active`   | Pression en cours                | Fond encore plus soutenu                                                                                                                                                        | Activable                                            |
+| `focus`    | Focus clavier (`:focus-visible`) | Anneau de focus de 2 px, décalé de 2 px, en plus de l'état courant                                                                                                              | Activable                                            |
+| `disabled` | `disabled`                       | Couleurs atténuées, curseur `not-allowed`                                                                                                                                       | Non activable, retiré de la tabulation               |
+| `loading`  | `loading`                        | Spinner à la place de `icon-start`, libellé conservé. Largeur inchangée si une icône de début est présente ; sinon le spinner s'ajoute devant le libellé et le bouton s'élargit | Non activable, reste focalisable, annoncé « occupé » |
 
 `focus` se combine avec `hover` et `active`. `disabled` l'emporte sur tous les autres. En Figma, chaque état est une variante (6 états × 21 styles × 3 tailles = 378 variantes).
 
