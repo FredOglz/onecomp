@@ -37,7 +37,7 @@ pnpm --filter @onec/components storybook
 ## Publier une version
 
 1. Monter la version dans tous les `package.json` et ajouter la section au [CHANGELOG.md](CHANGELOG.md), dans une PR.
-2. Après fusion, pousser le tag : `git tag v0.1.0 && git push origin v0.1.0`. Le workflow Release construit, teste et joint les archives (`node scripts/pack.mjs`).
+2. Après fusion, pousser le tag (`git tag v0.1.0 && git push origin v0.1.0`) ou lancer le workflow Release à la main depuis l'onglet Actions. Il construit, teste et joint les archives (`node scripts/pack.mjs`).
 3. Publier la bibliothèque Figma avec le même numéro et le lien vers la release.
 
 Voir [CONTRIBUTING.md](CONTRIBUTING.md) pour le circuit des modifications et le format des commits.
