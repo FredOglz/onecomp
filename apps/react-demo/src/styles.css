@@ -1,0 +1,40 @@
+body {
+  margin: 0;
+  font-family: var(--onec-font-family-base, system-ui, sans-serif);
+}
+
+.page {
+  min-height: 100vh;
+  padding: 24px 16px;
+  background: var(--onec-color-surface-default);
+  color: var(--onec-color-text-default);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.toolbar h1 {
+  margin: 0 auto 0 0;
+  font-size: 1.25rem;
+}
+
+h2 {
+  font-size: 1rem;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}

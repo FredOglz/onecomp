@@ -1,0 +1,37 @@
+{
+  "name": "@onec/react",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "description": "Wrappers React des Web Components onec, générés par Stencil.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@onec/components": "workspace:*",
+    "@stencil/react-output-target": "1.8.1"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.2",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "typescript": "~6.0.3"
+  }
+}

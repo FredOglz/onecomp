@@ -12,7 +12,9 @@ docs/
 packages/
   tokens/         @onec/tokens : tokens DTCG et thèmes
   icons/          @onec/icons : icônes Lucide (SVG sources)
-  components/     @onec/components : Web Components Stencil et wrappers
+  components/     @onec/components : Web Components Stencil
+  react/          @onec/react : wrappers React générés
+  angular/        @onec/angular : composants Angular générés
 apps/             démos React et Angular
 ```
 
