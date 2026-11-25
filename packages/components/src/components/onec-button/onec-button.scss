@@ -1,0 +1,135 @@
+// <onec-button> : ne lit que les tokens composant `--onec-button-*` (voir ADR 0003).
+// Chaque combinaison variante × couleur recopie ses 12 tokens dans des propriétés locales
+// (--_bg, --_border, --_fg pour chaque état), lues ensuite par une seule règle.
+
+$variants: contained, outlined, ghost;
+$colors: primary, secondary, neutral, success, warning, error, info;
+$states: default, hover, active, disabled;
+$sizes: small, medium, large;
+
+:host {
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+:host([hidden]) {
+  display: none;
+}
+
+@each $variant in $variants {
+  @each $color in $colors {
+    :host([variant='#{$variant}'][color='#{$color}']) {
+      @each $state in $states {
+        --_bg-#{$state}: var(--onec-button-#{$variant}-#{$color}-background-#{$state});
+        --_border-#{$state}: var(--onec-button-#{$variant}-#{$color}-border-#{$state});
+        --_fg-#{$state}: var(--onec-button-#{$variant}-#{$color}-foreground-#{$state});
+      }
+    }
+  }
+}
+
+@each $size in $sizes {
+  :host([size='#{$size}']) {
+    --_height: var(--onec-button-height-#{$size});
+    --_padding-x: var(--onec-button-padding-x-#{$size});
+    --_gap: var(--onec-button-gap-#{$size});
+    --_font-size: var(--onec-button-font-size-#{$size});
+    --_icon-size: var(--onec-button-icon-size-#{$size});
+  }
+}
+
+.base {
+  --_bg: var(--_bg-default);
+  --_border: var(--_border-default);
+  --_fg: var(--_fg-default);
+
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--_gap);
+  min-block-size: var(--_height);
+  margin: 0;
+  // La bordure est retirée du padding pour que les trois variantes aient la même taille.
+  padding-block: 0;
+  padding-inline: calc(var(--_padding-x) - var(--onec-button-border-width));
+  border: var(--onec-button-border-width) solid var(--_border);
+  border-radius: var(--onec-button-border-radius);
+  background: var(--_bg);
+  color: var(--_fg);
+  font-family: var(--onec-button-font-family);
+  font-size: var(--_font-size);
+  font-weight: var(--onec-button-font-weight);
+  line-height: var(--onec-button-line-height);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease;
+
+  &:hover:not(:disabled, [aria-disabled='true']) {
+    --_bg: var(--_bg-hover);
+    --_border: var(--_border-hover);
+    --_fg: var(--_fg-hover);
+  }
+
+  &:active:not(:disabled, [aria-disabled='true']) {
+    --_bg: var(--_bg-active);
+    --_border: var(--_border-active);
+    --_fg: var(--_fg-active);
+  }
+
+  &:focus-visible {
+    outline: var(--onec-button-focus-ring-width) solid var(--onec-button-focus-ring-color);
+    outline-offset: var(--onec-button-focus-ring-offset);
+  }
+
+  &:disabled {
+    --_bg: var(--_bg-disabled);
+    --_border: var(--_border-disabled);
+    --_fg: var(--_fg-disabled);
+
+    cursor: not-allowed;
+  }
+
+  &[aria-busy='true'] {
+    cursor: progress;
+  }
+
+  @media (forced-colors: active) {
+    border-color: ButtonText;
+
+    &:disabled {
+      border-color: GrayText;
+      color: GrayText;
+    }
+  }
+}
+
+.icon {
+  --onec-icon-size: var(--_icon-size);
+
+  display: inline-flex;
+  flex-shrink: 0;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.spinner {
+  animation: onec-button-spin 800ms linear infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@keyframes onec-button-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}

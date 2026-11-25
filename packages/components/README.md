@@ -15,15 +15,20 @@ Les composants lisent les tokens : charger leur CSS une fois dans la page.
 <link rel="stylesheet" href="node_modules/@onec/tokens/dist/css/tokens.css" />
 <script type="module" src="node_modules/@onec/components/dist/onec/onec.esm.js"></script>
 
-<onec-icon name="download"></onec-icon>
+<onec-button variant="outlined" color="neutral">
+  <onec-icon slot="icon-start" name="download"></onec-icon>
+  Télécharger
+</onec-button>
 ```
 
-Avec un bundler, on peut importer un composant à la fois :
+Avec un bundler, on peut importer un composant à la fois (ses dépendances, comme `<onec-icon>`, sont définies avec lui) :
 
 ```js
-import { defineCustomElement } from '@onec/components/components/onec-icon.js';
+import { defineCustomElement } from '@onec/components/components/onec-button.js';
 defineCustomElement();
 ```
+
+Les styles sont écrits en Sass (`*.scss`) : une boucle relie chaque combinaison variante × couleur à ses tokens `--onec-button-*`.
 
 ## Scripts
 
