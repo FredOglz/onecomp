@@ -1,9 +1,13 @@
 name: Release
 
 # Un tag vX.Y.Z publie une release GitHub avec le changelog et les archives des paquets (ADR 0004).
+# Deux déclencheurs : pousser le tag, ou lancer le workflow à la main (il crée alors le tag
+# sur le commit choisi). Si la release existe déjà (créée dans l'interface GitHub), le
+# workflow met à jour ses notes et y joint les archives.
 on:
   push:
     tags: ['v*.*.*']
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -19,19 +23,28 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - name: Vérifier que le tag correspond à la version
+      - name: Déterminer le tag
         run: |
           version=$(node -p "require('./package.json').version")
-          test "v$version" = "$GITHUB_REF_NAME" || { echo "Tag $GITHUB_REF_NAME, version $version"; exit 1; }
+          if [ "$GITHUB_REF_TYPE" = "tag" ]; then
+            test "v$version" = "$GITHUB_REF_NAME" || { echo "Tag $GITHUB_REF_NAME, version $version"; exit 1; }
+          fi
+          echo "TAG=v$version" >> "$GITHUB_ENV"
       - run: pnpm build
       - run: pnpm test
       - run: node scripts/pack.mjs
       - name: Extraire les notes de version
         run: |
-          version=${GITHUB_REF_NAME#v}
+          version=${TAG#v}
           awk -v v="$version" '$0 ~ "^## \\[" v "\\]" {on=1; next} /^## \[/ {on=0} /^\[.*\]: / {on=0} on' CHANGELOG.md > notes.md
           test -s notes.md
       - name: Créer la release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "$GITHUB_REF_NAME" release/*.tgz --title "$GITHUB_REF_NAME" --notes-file notes.md
+        run: |
+          if gh release view "$TAG" > /dev/null 2>&1; then
+            gh release edit "$TAG" --title "$TAG" --notes-file notes.md
+            gh release upload "$TAG" release/*.tgz --clobber
+          else
+            gh release create "$TAG" release/*.tgz --target "$GITHUB_SHA" --title "$TAG" --notes-file notes.md
+          fi
