@@ -1,0 +1,33 @@
+<main class="page" [attr.data-brand]="brand()" [attr.data-theme]="scheme()">
+  <header class="toolbar">
+    <h1>onec · Angular</h1>
+    <onec-button variant="outlined" color="neutral" size="small" (click)="toggleBrand()">
+      Marque : {{ brand().toUpperCase() }}
+    </onec-button>
+    <onec-button variant="outlined" color="neutral" size="small" (click)="toggleScheme()">
+      Schéma : {{ scheme() === 'light' ? 'clair' : 'sombre' }}
+    </onec-button>
+  </header>
+
+  <section>
+    <h2>Variantes et couleurs</h2>
+    <div class="grid">
+      @for (variant of variants; track variant) { @for (color of colors; track color) {
+      <onec-button [variant]="variant" [color]="color">{{ color }}</onec-button>
+      } }
+    </div>
+  </section>
+
+  <section>
+    <h2>Formulaire</h2>
+    <form class="form" (submit)="onSubmit($event)">
+      <label>Immatriculation <input name="plate" value="AB-123-CD" /></label>
+      <onec-button type="submit" name="action" value="save" [loading]="saving()">
+        <onec-icon slot="icon-start" name="check"></onec-icon>
+        Enregistrer
+      </onec-button>
+      <onec-button type="reset" variant="ghost" color="neutral">Annuler</onec-button>
+    </form>
+    <p role="status">{{ result() }}</p>
+  </section>
+</main>

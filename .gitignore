@@ -4,3 +4,4 @@ loader/
 .DS_Store
 *.log
 .env
+.angular/

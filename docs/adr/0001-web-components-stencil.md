@@ -29,7 +29,7 @@ On écrit les composants avec **Stencil**, en Shadow DOM, avec les cibles de sor
 ## Conséquences
 
 - Paquet `packages/components` : composants Stencil, sortie `dist-custom-elements` et manifeste `custom-elements.json` pour la doc et les agents IA.
-- Wrappers générés dans le même paquet (ou des sous-paquets) à chaque build ; ils ne se modifient jamais à la main.
+- Wrappers générés à chaque build dans deux paquets dédiés, `@onec/react` et `@onec/angular` (composants standalone, compilés avec ng-packagr) ; ils ne se modifient jamais à la main.
 - Storybook utilise le framework `web-components` ; les apps de démo React et Angular consomment les wrappers.
 - Les tokens arrivent par des custom properties CSS qui traversent le Shadow DOM.
 - Si Stencil devenait un frein, les composants restent des Web Components standards : on pourrait réécrire l'implémentation sans changer l'API publique.
