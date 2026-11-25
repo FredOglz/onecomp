@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Overview
 
 Déclenche une action dans la page : envoyer un formulaire, ouvrir une fenêtre, confirmer un choix.
@@ -21,7 +20,6 @@ Contrat : `docs/contracts/button.md`.
 | `value`    | `value`    | Valeur envoyée avec le formulaire quand ce bouton le soumet.             | `string`                                                                               | `undefined`   |
 | `variant`  | `variant`  | Niveau d'emphase.                                                        | `"contained" \| "ghost" \| "outlined"`                                                 | `'contained'` |
 
-
 ## Slots
 
 | Slot           | Description                         |
@@ -29,7 +27,6 @@ Contrat : `docs/contracts/button.md`.
 |                | Le libellé, en texte. Obligatoire.  |
 | `"icon-end"`   | Une `<onec-icon>` après le libellé. |
 | `"icon-start"` | Une `<onec-icon>` avant le libellé. |
-
 
 ## Shadow Parts
 
@@ -41,7 +38,6 @@ Contrat : `docs/contracts/button.md`.
 | `"label"`      | Le conteneur du libellé.                                     |
 | `"spinner"`    | L'indicateur de chargement.                                  |
 
-
 ## Dependencies
 
 ### Depends on
@@ -49,12 +45,11 @@ Contrat : `docs/contracts/button.md`.
 - [onec-icon](../onec-icon)
 
 ### Graph
+
 ```mermaid
 graph TD;
   onec-button --> onec-icon
   style onec-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
-
-
+---

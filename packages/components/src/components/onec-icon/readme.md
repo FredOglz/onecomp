@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Overview
 
 Affiche une icône du jeu onec (Lucide), en SVG inline.
@@ -19,27 +18,24 @@ La couleur suit celle du texte parent (`currentColor`). La taille vient des toke
 | `name` _(required)_ | `name`    | Nom de l'icône, tel qu'il apparaît dans `packages/icons/svg/`.                                                                                                        | `"arrow-left" \| "arrow-right" \| "check" \| "chevron-down" \| "download" \| "external-link" \| "loader-circle" \| "plus" \| "search" \| "send" \| "trash-2" \| "x"` | `undefined` |
 | `size`              | `size`    | Taille, liée aux tokens `size.icon.small\|medium\|large` (16, 16 et 20 px).                                                                                           | `"large" \| "medium" \| "small"`                                                                                                                                     | `'medium'`  |
 
-
 ## Shadow Parts
 
 | Part    | Description        |
 | ------- | ------------------ |
 | `"svg"` | L'élément `<svg>`. |
 
-
 ## Dependencies
 
 ### Used by
 
- - [onec-button](../onec-button)
+- [onec-button](../onec-button)
 
 ### Graph
+
 ```mermaid
 graph TD;
   onec-button --> onec-icon
   style onec-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
-
-
+---

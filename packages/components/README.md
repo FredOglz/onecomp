@@ -39,3 +39,15 @@ Les styles sont écrits en Sass (`*.scss`) : une boucle relie chaque combinaison
 | `pnpm test`  | Tests unitaires (spec)                                            |
 
 Les fichiers `src/components.d.ts` et `src/components/*/readme.md` sont générés par Stencil au build : les committer, ne pas les modifier à la main (sauf le texte au-dessus de « Auto Generated Below »).
+
+## Tests navigateur
+
+`e2e/` contient trois familles de tests Playwright, lancés sur les stories du Storybook statique :
+
+| Fichier                       | Vérifie                                                                |
+| ----------------------------- | ---------------------------------------------------------------------- |
+| `button.interactions.spec.ts` | Clic, clavier (Tab, Entrée, Espace), formulaire, désactivé, chargement |
+| `button.a11y.spec.ts`         | axe, WCAG 2.2 AA, sur la matrice des 4 thèmes                          |
+| `button.visual.spec.ts`       | Captures de référence : matrice 4 thèmes, survol, focus                |
+
+Après un changement visuel voulu : `pnpm e2e --update-snapshots`, vérifier les images dans `e2e/__screenshots__/`, puis les committer.

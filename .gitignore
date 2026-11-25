@@ -5,3 +5,6 @@ loader/
 *.log
 .env
 .angular/
+storybook-static/
+test-results/
+playwright-report/
