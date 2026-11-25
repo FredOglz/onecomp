@@ -2,5 +2,25 @@
   "name": "@onec/tokens",
   "version": "0.0.0",
   "private": true,
-  "license": "MIT"
+  "license": "MIT",
+  "description": "Tokens DTCG et thèmes (marque × schéma) du design system onec.",
+  "type": "module",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "exports": {
+    "./css": "./dist/css/tokens.css",
+    "./json/*": "./dist/json/*.json",
+    "./scss/*": "./dist/scss/_*.scss",
+    "./src/*": "./src/*"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node scripts/check.mjs"
+  },
+  "devDependencies": {
+    "culori": "^4.0.2",
+    "style-dictionary": "^5.8.0"
+  }
 }
