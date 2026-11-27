@@ -1,9 +1,26 @@
-import { Meta, Canvas, Controls, Stories } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Example } from '../../../.storybook/blocks/Example';
+import { StoryCode, CodeTabs } from '../../../.storybook/blocks/CodeTabs';
+import { SourceLinks, FigmaLink } from '../../../.storybook/blocks/FigmaLink';
 import * as ButtonStories from './onec-button.stories';
 
 <Meta of={ButtonStories} />
 
 # Button
+
+<SourceLinks
+  figma="buttonPresentation"
+  links={[
+    {
+      label: 'Contrat',
+      href: 'https://github.com/FredOglz/onecomp/blob/main/docs/contracts/button.md',
+    },
+    {
+      label: 'Code source',
+      href: 'https://github.com/FredOglz/onecomp/tree/main/packages/components/src/components/onec-button',
+    },
+  ]}
+/>
 
 Le Button déclenche une action dans la page : envoyer un formulaire, ouvrir une fenêtre, confirmer un choix.
 Il existe en un seul composant, `<onec-button>`, utilisable tel quel en HTML, en React (`@onec/react`) et en Angular (`@onec/angular`).
@@ -11,7 +28,34 @@ Il existe en un seul composant, `<onec-button>`, utilisable tel quel en HTML, en
 La source de vérité est le [contrat du Button](https://github.com/FredOglz/onecomp/blob/main/docs/contracts/button.md) : cette page en reprend l'essentiel.
 
 <Canvas of={ButtonStories.Playground} />
+<StoryCode of={ButtonStories.Playground} />
 <Controls of={ButtonStories.Playground} />
+
+Le code suit les contrôles : changez la variante, la taille ou une icône, l'extrait se met à jour. Choisissez React, Angular ou HTML une fois, le choix vaut pour toutes les pages.
+
+## Installer
+
+<CodeTabs
+  code={{
+    react: `pnpm add ./onec-react-0.1.0.tgz ./onec-components-0.1.0.tgz ./onec-tokens-0.1.0.tgz ./onec-icons-0.1.0.tgz
+
+// main.tsx : la feuille de tokens, une fois pour toute l'application
+import '@onec/tokens/css';
+import { OnecButton, OnecIcon } from '@onec/react';`,
+    angular: `pnpm add ./onec-angular-0.1.0.tgz ./onec-components-0.1.0.tgz ./onec-tokens-0.1.0.tgz ./onec-icons-0.1.0.tgz
+
+// angular.json > projects.\*.architect.build.options.styles :
+// ["node_modules/@onec/tokens/dist/css/tokens.css"]
+// Composants standalone : à importer dans chaque composant qui les utilise.
+import { OnecButton, OnecIcon } from '@onec/angular';`,
+    html: `<link rel="stylesheet" href="node_modules/@onec/tokens/dist/css/tokens.css" />
+
+<script type="module" src="node_modules/@onec/components/loader/index.js"></script>`,
+
+}}
+/>
+
+Les archives des paquets sont jointes à chaque [release GitHub](https://github.com/FredOglz/onecomp/releases) (pas de registre npm pour l’instant).
 
 ## Quand l'utiliser
 
@@ -28,7 +72,7 @@ La source de vérité est le [contrat du Button](https://github.com/FredOglz/one
 Les couleurs sont des rôles : `primary` et `secondary` suivent la marque (B2C ou B2B), `neutral` sert les actions sans marque,
 `success`, `warning`, `error` et `info` portent un signal.
 
-<Canvas of={ButtonStories.Variants} />
+<Example of={ButtonStories.Variants} />
 
 ## Tailles
 
@@ -38,14 +82,14 @@ Les couleurs sont des rôles : `primary` et `secondary` suivent la marque (B2C o
 | `medium` | 40 px   | 14 px | 16 px | Par défaut                                  |
 | `large`  | 48 px   | 16 px | 20 px | Écrans tactiles, appel à l'action principal |
 
-<Canvas of={ButtonStories.Sizes} />
+<Example of={ButtonStories.Sizes} />
 
 ## Icônes
 
 Une `<onec-icon>` dans le slot `icon-start` ou `icon-end`. Les icônes sont décoratives : le libellé suffit à nommer l'action.
 On parle de début et de fin, pas de gauche et de droite : en lecture de droite à gauche, elles s'inversent sans changer le code.
 
-<Canvas of={ButtonStories.WithIcons} />
+<Example of={ButtonStories.WithIcons} />
 
 ## États
 
@@ -53,13 +97,21 @@ On parle de début et de fin, pas de gauche et de droite : en lecture de droite 
 - **Chargement** : un spinner remplace l'icône de début (ou s'ajoute devant le libellé), le bouton reste focalisable et est annoncé « occupé ». Il n'est plus activable : pas de double envoi.
 - **Focus clavier** : anneau de 2 px décalé de 2 px, visible seulement à la navigation clavier.
 
-<Canvas of={ButtonStories.States} />
+<Example of={ButtonStories.States} />
+
+### Matrice des états
+
+Toutes les variantes et couleurs dans les six états, dans la marque et le schéma de la barre d'outils.
+Survol, appui et focus sont figés pour la doc ; en usage réel, ils viennent du navigateur.
+La même grille existe dans Figma, où chaque cellule est une variante du composant. <FigmaLink node="buttonComponent">Voir la grille dans Figma</FigmaLink>
+
+<Example of={ButtonStories.StatesMatrix} />
 
 ## Formulaires
 
 `type="submit"` envoie le formulaire parent avec `name` et `value`, `type="reset"` le réinitialise, et un `<fieldset disabled>` désactive le bouton.
 
-<Canvas of={ButtonStories.Form} />
+<Example of={ButtonStories.Form} />
 
 ## Accessibilité
 
@@ -72,18 +124,12 @@ On parle de début et de fin, pas de gauche et de droite : en lecture de droite 
 
 La marque et le schéma se choisissent dans la barre d'outils de Storybook. Dans une application, ils se posent ensemble sur un conteneur :
 
-```html
-<link rel="stylesheet" href="@onec/tokens/dist/css/tokens.css" />
-<div data-brand="b2b" data-theme="dark">
-  <onec-button>Enregistrer</onec-button>
-</div>
-```
-
-<Canvas of={ButtonStories.AllThemes} />
+<Example of={ButtonStories.AllThemes} />
 
 ## Tokens
 
 Le composant ne lit que ses tokens `--onec-button-*`, qui pointent vers les tokens sémantiques. Changer une couleur se fait dans `packages/tokens`, jamais dans le composant.
+Toutes les valeurs, thème par thème, sont dans [Design tokens › Tokens du Button](?path=/docs/design-tokens-tokens-du-button--documentation).
 
 | Groupe      | Tokens                                                                                                                    |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------- |
@@ -94,26 +140,14 @@ Le composant ne lit que ses tokens `--onec-button-*`, qui pointent vers les toke
 
 `{état}` vaut `default`, `hover`, `active` ou `disabled`.
 
-## Code
+## Dans Figma
 
-```html
-<onec-button variant="outlined" color="neutral" size="large">
-  <onec-icon slot="icon-start" name="download"></onec-icon>
-  Télécharger
-</onec-button>
-```
+Le composant Figma porte les mêmes propriétés que le code : `Variant`, `Color`, `Size`, `State`, et les icônes de début et de fin.
+Ses couleurs et dimensions sont liées aux variables de la collection **Components**, qui reprennent les tokens `--onec-button-*` un pour un.
 
-```tsx
-import { OnecButton, OnecIcon } from '@onec/react';
+- Dans chaque story, l'onglet **Design** du panneau du bas affiche la maquette Figma à côté du rendu code.
+- <FigmaLink node="buttonPresentation">Présentation du Button</FigmaLink>
+  <FigmaLink node="buttonThemes">Les 4 thèmes</FigmaLink>
+  <FigmaLink node="buttonComponent">Les 378 variantes</FigmaLink>
 
-<OnecButton variant="outlined" color="neutral" onClick={download}>
-  <OnecIcon slot="icon-start" name="download" />
-  Télécharger
-</OnecButton>;
-```
-
-```ts
-// Angular (standalone)
-import { OnecButton, OnecIcon } from '@onec/angular';
-@Component({ imports: [OnecButton, OnecIcon], template: `<onec-button (click)="download()">Télécharger</onec-button>` })
-```
+Le code reste la source : une évolution part du contrat, puis des tokens, puis du composant, et Figma est régénéré ensuite.

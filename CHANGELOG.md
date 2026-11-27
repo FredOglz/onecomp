@@ -2,6 +2,14 @@
 
 Une seule version pour tous les paquets et pour la bibliothèque Figma (voir [ADR 0004](docs/adr/0004-versioning-et-publication.md)). Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), versions [semver](https://semver.org/lang/fr/).
 
+## [Non publié]
+
+### Ajouté
+
+- Storybook : code de chaque exemple en React, Angular ou HTML (onglets, choix mémorisé, mis à jour par les contrôles), panneau « Design » avec la maquette Figma de chaque story et liens « Ouvrir dans Figma ».
+- Storybook : parcours « Démarrer » par profil (designers, React, Angular, HTML), section « Design tokens » (couleurs, typographie, espacements, tokens du Button, usage, lien avec les variables Figma) lue directement dans `@onec/tokens`.
+- Storybook : matrice variantes × couleurs × états, dans un thème ou les quatre.
+
 ## [0.1.0] - 2026-11-25
 
 Première version : un Button complet, du token à Figma.

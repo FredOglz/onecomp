@@ -12,7 +12,11 @@ const config: StorybookConfig = {
       options: { mdxPluginOptions: { mdxCompileOptions: { remarkPlugins: [remarkGfm] } } },
     },
     '@storybook/addon-a11y',
+    // Panneau « Design » : la maquette Figma à côté du rendu code.
+    '@storybook/addon-designs',
   ],
+  // Nom de l'entrée de doc rattachée à un composant (onec-button.mdx).
+  docs: { defaultName: 'Documentation' },
   core: { disableTelemetry: true },
 };
 

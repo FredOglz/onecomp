@@ -1,0 +1,343 @@
+/* Styles des blocs de documentation (pages MDX). Les exemples rendus, eux, ne lisent que les tokens. */
+
+.onec-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Bandeau de liens en tête de page */
+.onec-source-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 32px;
+}
+
+.onec-figma-link,
+.onec-source-links__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  background: #fff;
+  color: #1d2939 !important;
+  font-size: 13px !important;
+  line-height: 18px !important;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+
+.onec-figma-link:hover,
+.onec-source-links__link:hover {
+  border-color: #98a2b3;
+  background: #f9fafb;
+}
+
+.onec-figma-link:focus-visible,
+.onec-source-links__link:focus-visible,
+.onec-code-tabs__tab:focus-visible,
+.onec-profile:focus-visible {
+  outline: 2px solid #1570ef;
+  outline-offset: 2px;
+}
+
+/* Exemple : rendu + code */
+.onec-example {
+  margin: 24px 0 40px;
+}
+
+.onec-example .docs-story + div,
+.onec-example > div:first-child {
+  margin-bottom: 0;
+}
+
+.onec-code-tabs {
+  margin-top: -8px;
+}
+
+.onec-code-tabs__list {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 8px 0;
+  border-radius: 8px 8px 0 0;
+  background: #1e1e1e;
+}
+
+.onec-code-tabs__tab {
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 6px 6px 0 0;
+  background: transparent;
+  color: #b3b3b3;
+  font-family: inherit;
+  font-size: 13px !important;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.onec-code-tabs__tab:hover {
+  color: #fff;
+}
+
+.onec-code-tabs__tab[aria-selected='true'] {
+  background: #2d2d2d;
+  color: #fff;
+  box-shadow: inset 0 -2px 0 #8e9aff;
+}
+
+.onec-code-tabs__hint {
+  margin-left: auto;
+  padding-right: 4px;
+  color: #8c8c8c;
+  font-size: 11px !important;
+}
+
+.onec-code-tabs [role='tabpanel'] > div {
+  margin-top: 0 !important;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+/* Cartes de profils (accueil) */
+.onec-profiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.onec-profile {
+  display: block;
+  padding: 20px;
+  border: 1px solid #e4e7ec;
+  border-radius: 12px;
+  background: #fff;
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.onec-profile:hover {
+  border-color: #8e9aff;
+  box-shadow: 0 4px 16px rgb(16 24 40 / 8%);
+}
+
+.onec-profile strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 16px;
+}
+
+.onec-profile span {
+  color: #475467;
+  font-size: 14px;
+}
+
+/* Tokens */
+.onec-token-code {
+  font-size: 12px !important;
+  white-space: nowrap;
+}
+
+.onec-token-table-wrap {
+  overflow-x: auto;
+}
+
+.onec-token-table {
+  width: 100%;
+  font-size: 13px;
+}
+
+.onec-token-table td,
+.onec-token-table th {
+  vertical-align: middle;
+}
+
+.onec-token-figma {
+  display: block;
+  margin-top: 2px;
+  color: #667085;
+  font-size: 11px;
+}
+
+.onec-token-figma::before {
+  content: 'Figma : ';
+}
+
+.onec-token-ref {
+  color: #475467;
+  font-size: 12px;
+}
+
+.onec-token-ref span {
+  display: block;
+}
+
+.onec-token-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: ui-monospace, monospace;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.onec-swatch {
+  display: inline-block;
+  flex-shrink: 0;
+  border-radius: 4px;
+  background:
+    linear-gradient(var(--swatch), var(--swatch)),
+    repeating-conic-gradient(#d0d5dd 0 25%, #fff 0 50%) 0 0 / 8px 8px;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 12%);
+}
+
+.onec-token-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.onec-token-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 12px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.onec-token-filter select {
+  padding: 4px 8px;
+  font: inherit;
+  font-weight: 400;
+}
+
+.onec-palettes {
+  display: grid;
+  gap: 16px;
+  margin: 16px 0 32px;
+}
+
+.onec-palette__name {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 6px;
+  text-transform: capitalize;
+}
+
+.onec-palette__name code {
+  text-transform: none;
+}
+
+.onec-palette__steps {
+  display: grid;
+  grid-template-columns: repeat(11, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.onec-palette__step {
+  display: grid;
+  gap: 2px;
+  font-size: 11px;
+}
+
+.onec-palette__chip {
+  height: 40px;
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 8%);
+}
+
+.onec-palette__label {
+  font-weight: 600;
+}
+
+.onec-palette__hex {
+  color: #667085;
+  font-family: ui-monospace, monospace;
+  font-size: 10px;
+}
+
+.onec-brand-strip {
+  display: flex;
+  margin-bottom: 4px;
+}
+
+.onec-brand-strip span {
+  width: 20px;
+  height: 20px;
+}
+
+.onec-brand-strip span:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.onec-brand-strip span:last-child {
+  border-radius: 0 4px 4px 0;
+}
+
+.onec-roles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin: 16px 0 32px;
+}
+
+.onec-roles__theme {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid #e4e7ec;
+  border-radius: 12px;
+}
+
+.onec-roles__title {
+  margin: 0 0 4px !important;
+  font-size: 12px !important;
+  font-weight: 600;
+}
+
+.onec-roles__row {
+  display: flex;
+  gap: 8px;
+}
+
+.onec-roles__fill,
+.onec-roles__outline {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.onec-scale-bar {
+  display: inline-block;
+  height: 12px;
+  border-radius: 2px;
+  background: #8e9aff;
+}
+
+.onec-scale-radius {
+  display: inline-block;
+  width: 48px;
+  height: 32px;
+  border: 2px solid #5c61db;
+  background: #e6eaff;
+}
+
+.onec-scale-border {
+  display: inline-block;
+  width: 64px;
+  border-top: solid #1d2939;
+}

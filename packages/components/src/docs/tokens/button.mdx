@@ -1,0 +1,30 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { ButtonTokens } from '../../../.storybook/blocks/tokens';
+import { SourceLinks } from '../../../.storybook/blocks/FigmaLink';
+
+<Meta title="Design tokens/Tokens du Button" />
+
+# Tokens du Button
+
+Le Button ne lit que ces tokens. Chacun pointe vers un token sémantique : changer une couleur du bouton, c'est changer la référence ici, dans `packages/tokens/src/components/button.json`.
+Dans Figma : collection **Components**, mêmes noms avec des barres obliques ; le composant Button y est lié variante par variante.
+
+<SourceLinks
+  figma="buttonComponent"
+  links={[
+    {
+      label: 'button.json',
+      href: 'https://github.com/FredOglz/onecomp/blob/main/packages/tokens/src/components/button.json',
+    },
+  ]}
+/>
+
+## Dimensions et typographie
+
+<ButtonTokens group="dimensions" />
+
+## Couleurs
+
+Douze tokens par combinaison variante × couleur : fond, bordure et texte, pour les états `default`, `hover`, `active` et `disabled`. Le focus est commun à tous.
+
+<ButtonTokens group="colors" />

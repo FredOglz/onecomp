@@ -1,0 +1,43 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import {
+  Palettes,
+  BrandMap,
+  SemanticColors,
+  ActionRoles,
+  ActionTokens,
+} from '../../../.storybook/blocks/tokens';
+
+<Meta title="Design tokens/Couleurs" />
+
+# Couleurs
+
+## Palettes primitives
+
+Onze paliers par teinte, générés en OKLCH.
+On ne les utilise pas directement dans un composant : on passe par un token sémantique.
+Dans Figma : collection **Primitives**, groupe `color/palette`.
+
+<Palettes />
+
+## Marques
+
+`brand.primary` et `brand.secondary` pointent vers une palette différente selon la marque. Dans Figma : collection **Brand**, modes B2C et B2B.
+
+<BrandMap />
+
+## Couleurs sémantiques
+
+Le rôle de chaque couleur, et sa valeur dans les 4 thèmes. Dans Figma : collection **Scheme**, modes Light et Dark.
+
+<SemanticColors />
+
+## Rôles d'action
+
+Sept rôles portent les actions : `primary` et `secondary` suivent la marque, `neutral` est sans marque, `success`, `warning`, `error` et `info` portent un signal.
+Chaque rôle définit un remplissage (`fill`, `fill-hover`, `fill-active`), le texte posé dessus (`on-fill`), une couleur de texte et de bordure, et des teintes légères pour les variantes sans fond.
+
+<ActionRoles />
+
+<ActionTokens />
+
+Les couples texte / fond sont contrôlés à 4,5:1, et les bordures et l'anneau de focus à 3:1, dans chaque thème : `pnpm --filter @onec/tokens test`.

@@ -1,0 +1,99 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { SourceLinks } from '../../../.storybook/blocks/FigmaLink';
+import { TokenCounts } from '../../../.storybook/blocks/tokens';
+import { Profiles } from '../../../.storybook/blocks/DocLink';
+
+<Meta title="Design tokens/Vue d’ensemble" />
+
+# Design tokens
+
+Les tokens sont les décisions de design nommées : une couleur, une taille, un espacement.
+Ils sont écrits une fois, au format [DTCG](https://www.designtokens.org/), dans `packages/tokens/src/`, puis générés en CSS, SCSS, JSON et variables Figma.
+Toutes les valeurs de cette section sont lues dans ces fichiers : elles ne peuvent pas être en retard sur le code.
+
+<SourceLinks
+  figma="cover"
+  links={[
+    {
+      label: 'Sources des tokens',
+      href: 'https://github.com/FredOglz/onecomp/tree/main/packages/tokens/src',
+    },
+    {
+      label: 'ADR 0003 : tokens et thèmes',
+      href: 'https://github.com/FredOglz/onecomp/blob/main/docs/adr/0003-tokens-et-themes.md',
+    },
+  ]}
+/>
+
+## Trois niveaux
+
+```
+Primitives          color.palette.purple.600 = #9e00f2          « ce qui existe »
+   ↓
+Sémantiques         color.action.primary.fill → brand.primary.600 → purple.600   « à quoi ça sert »
+   ↓
+Composant           button.contained.primary.background.default → color.action.primary.fill
+```
+
+- **Primitives** : les palettes, l'échelle d'espacement, les rayons, la typographie. Jamais utilisées directement par un composant.
+- **Sémantiques** : le rôle d'une valeur (surface, texte, action primaire, focus). C'est là que les thèmes changent les valeurs.
+- **Composant** : ce que lit le composant, et rien d'autre. Un token composant pointe toujours vers un sémantique.
+
+<TokenCounts />
+
+## Quatre thèmes
+
+Un thème = une **marque** × un **schéma**. La marque choisit les palettes de `primary` et `secondary`, le schéma choisit clair ou sombre.
+
+| Thème        | En CSS                                | En Figma (modes)         |
+| ------------ | ------------------------------------- | ------------------------ |
+| B2C · clair  | `data-brand="b2c" data-theme="light"` | Brand B2C · Scheme Light |
+| B2C · sombre | `data-brand="b2c" data-theme="dark"`  | Brand B2C · Scheme Dark  |
+| B2B · clair  | `data-brand="b2b" data-theme="light"` | Brand B2B · Scheme Light |
+| B2B · sombre | `data-brand="b2b" data-theme="dark"`  | Brand B2B · Scheme Dark  |
+
+Sans attribut, c'est B2C clair. **Les deux attributs se posent toujours ensemble, sur le même élément** : un `data-brand` seul sur un conteneur imbriqué ne recalcule pas les couleurs héritées du parent.
+
+## Nommage
+
+| Où          | Forme                       | Exemple                            |
+| ----------- | --------------------------- | ---------------------------------- |
+| Source DTCG | chemin à points             | `color.action.primary.fill`        |
+| CSS         | `--onec-` + chemin à tirets | `--onec-color-action-primary-fill` |
+| SCSS        | `$onec-` + chemin à tirets  | `$onec-color-action-primary-fill`  |
+| JSON résolu | objet imbriqué              | `color.action.primary.fill`        |
+| Figma       | chemin à barres obliques    | `color/action/primary/fill`        |
+
+Noms en anglais, minuscules et tirets. Contraste AA vérifié en CI dans les 4 thèmes (284 contrôles).
+
+## Explorer
+
+<Profiles
+  items={[
+    {
+      path: '/docs/design-tokens-couleurs--documentation',
+      title: 'Couleurs',
+      text: 'Palettes, marques, couleurs sémantiques et rôles d’action dans les 4 thèmes.',
+    },
+    {
+      path: '/docs/design-tokens-typographie--documentation',
+      title: 'Typographie',
+      text: 'Famille, tailles, graisses, interlignage.',
+    },
+    {
+      path: '/docs/design-tokens-espacements-et-dimensions--documentation',
+      title: 'Espacements et dimensions',
+      text: 'Échelle d’espacement, rayons, épaisseurs, tailles de contrôle.',
+    },
+    {
+      path: '/docs/design-tokens-tokens-du-button--documentation',
+      title: 'Tokens du Button',
+      text: 'Chaque token du composant, sa référence et sa valeur par thème.',
+    },
+    {
+      path: '/docs/design-tokens-utiliser-les-tokens--documentation',
+      title: 'Utiliser les tokens',
+      text: 'En CSS, SCSS, JSON, React, Angular et dans Figma.',
+    },
+  ]}
+/>

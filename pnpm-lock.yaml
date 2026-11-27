@@ -153,6 +153,9 @@ importers:
       '@storybook/addon-a11y':
         specifier: 10.6.9
         version: 10.6.9(storybook@10.6.9(@types/react@19.3.2)(prettier@3.10.1)(react@19.3.1))
+      '@storybook/addon-designs':
+        specifier: 12.0.0
+        version: 12.0.0(@storybook/addon-docs@10.6.9(@types/react-dom@19.3.0(@types/react@19.3.2))(@types/react@19.3.2)(storybook@10.6.9(@types/react@19.3.2)(prettier@3.10.1)(react@19.3.1)))(@types/react@19.3.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(storybook@10.6.9(@types/react@19.3.2)(prettier@3.10.1)(react@19.3.1))
       '@storybook/addon-docs':
         specifier: 10.6.9
         version: 10.6.9(@types/react-dom@19.3.0(@types/react@19.3.2))(@types/react@19.3.2)(storybook@10.6.9(@types/react@19.3.2)(prettier@3.10.1)(react@19.3.1))
@@ -162,6 +165,9 @@ importers:
       '@types/jest':
         specifier: ^29.5.14
         version: 29.5.14
+      '@types/react':
+        specifier: 19.3.2
+        version: 19.3.2
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@26.6.10)
@@ -171,6 +177,12 @@ importers:
       lit:
         specifier: ^3.3.3
         version: 3.3.3
+      react:
+        specifier: 19.3.1
+        version: 19.3.1
+      react-dom:
+        specifier: 19.3.1
+        version: 19.3.1(react@19.3.1)
       remark-gfm:
         specifier: ^4.0.1
         version: 4.0.1
@@ -853,6 +865,14 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@figspec/components@2.1.0':
+    resolution: {integrity: sha512-PFKBX2oFz+vhThKTNsu7Mh4ZT3X7YCiM694UkAMT36j/p0tdmXs9Je0Sf88stTEcMgwYvNv9TZtvniYmgaE+bw==}
+
+  '@figspec/react@2.0.1':
+    resolution: {integrity: sha512-xflqJ3XQZVzm8+7dsm8OFxVAmBNNA3Mg65sqwNHiq7VRSMSD7qwH4BPsBy07ZaX+9nHeaacBpFZd3Q0aIsISqw==}
+    peerDependencies:
+      react: ^16.14.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
   '@fontsource/open-sans@5.3.0':
     resolution: {integrity: sha512-V1bdMlGNyZrJwzrdusshMOw2YR0aqYDL7kOo9dkxUEKl8dFv66A9HLckOOXl572sG/7ohhDQrCrTFGSn9LZcSw==}
 
@@ -1233,6 +1253,9 @@ packages:
     peerDependencies:
       '@inquirer/prompts': '>= 3 < 9'
       listr2: ^11.0.0
+
+  '@lit-labs/react@2.1.3':
+    resolution: {integrity: sha512-OD9h2JynerBQUMNzb563jiVpxfvPF0HjQkKY2mx0lpVYvD7F+rtJpOGz6ek+6ufMidV3i+MPT9SX62OKWHFrQg==}
 
   '@lit-labs/ssr-dom-shim@1.6.0':
     resolution: {integrity: sha512-VHb0ALPMTlgKjM6yIxxoQNnpKyUKLD04VzeQdsiXkMqkvYlAHxq9glGLmgbb889/1GsohSOAjvQYoiBppXFqrQ==}
@@ -2240,6 +2263,21 @@ packages:
     resolution: {integrity: sha512-z+nQJ0yCIRovchelyzE5I1ReujJ0FdTcA3eMyzB7zM+zZbUc3OO6NqDMdyYNhybocNbhVH5+wa2Jd470HeOnvQ==}
     peerDependencies:
       storybook: ^10.6.9
+
+  '@storybook/addon-designs@12.0.0':
+    resolution: {integrity: sha512-IhbWyqTg2qHN56iS93NynURJBxvYGWY6f7IgrTqOYz6t8AATv+1RIUGXKxVDk4zzVGZYok8TdLBE25O1XmQCXQ==}
+    peerDependencies:
+      '@storybook/addon-docs': ^0.0.0-0 || ^10.1.0-0 || ^10.2.0-0 || ^10.5.0-0 || ^10.6.0-0 || ^11.0.0-0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      storybook: ^0.0.0-0 || ^10.1.0-0 || ^10.2.0-0 || ^10.5.0-0 || ^10.6.0-0 || ^11.0.0-0
+    peerDependenciesMeta:
+      '@storybook/addon-docs':
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
 
   '@storybook/addon-docs@10.6.9':
     resolution: {integrity: sha512-7OkDticuH8CUDRUtsV34Dk1vs6tgbGQ/wUQIGTerV5w4+17l+5r8ZhuSkcdVHhoxhfsodPGhB+x2Nmk5ROAqJg==}
@@ -5934,6 +5972,16 @@ snapshots:
   '@esbuild/win32-x64@0.28.2':
     optional: true
 
+  '@figspec/components@2.1.0': {}
+
+  '@figspec/react@2.0.1(@types/react@19.3.2)(react@19.3.1)':
+    dependencies:
+      '@figspec/components': 2.1.0
+      '@lit-labs/react': 2.1.3(@types/react@19.3.2)
+      react: 19.3.1
+    transitivePeerDependencies:
+      - '@types/react'
+
   '@fontsource/open-sans@5.3.0': {}
 
   '@harperfast/extended-iterable@1.0.5':
@@ -6403,6 +6451,12 @@ snapshots:
       listr2: 11.4.1
     transitivePeerDependencies:
       - '@types/node'
+
+  '@lit-labs/react@2.1.3(@types/react@19.3.2)':
+    dependencies:
+      '@lit/react': 1.0.8(@types/react@19.3.2)
+    transitivePeerDependencies:
+      - '@types/react'
 
   '@lit-labs/ssr-dom-shim@1.6.0': {}
 
@@ -7066,6 +7120,17 @@ snapshots:
       '@storybook/global': 5.0.0
       axe-core: 4.14.1
       storybook: 10.6.9(@types/react@19.3.2)(prettier@3.10.1)(react@19.3.1)
+
+  '@storybook/addon-designs@12.0.0(@storybook/addon-docs@10.6.9(@types/react-dom@19.3.0(@types/react@19.3.2))(@types/react@19.3.2)(storybook@10.6.9(@types/react@19.3.2)(prettier@3.10.1)(react@19.3.1)))(@types/react@19.3.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(storybook@10.6.9(@types/react@19.3.2)(prettier@3.10.1)(react@19.3.1))':
+    dependencies:
+      '@figspec/react': 2.0.1(@types/react@19.3.2)(react@19.3.1)
+      storybook: 10.6.9(@types/react@19.3.2)(prettier@3.10.1)(react@19.3.1)
+    optionalDependencies:
+      '@storybook/addon-docs': 10.6.9(@types/react-dom@19.3.0(@types/react@19.3.2))(@types/react@19.3.2)(storybook@10.6.9(@types/react@19.3.2)(prettier@3.10.1)(react@19.3.1))
+      react: 19.3.1
+      react-dom: 19.3.1(react@19.3.1)
+    transitivePeerDependencies:
+      - '@types/react'
 
   '@storybook/addon-docs@10.6.9(@types/react-dom@19.3.0(@types/react@19.3.2))(@types/react@19.3.2)(storybook@10.6.9(@types/react@19.3.2)(prettier@3.10.1)(react@19.3.1))':
     dependencies:

@@ -15,3 +15,20 @@ body {
 .onec-theme--docs {
   min-height: 0;
 }
+
+/* Matrice des états (story « Matrice des états ») */
+.onec-states-matrix {
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.onec-states-matrix th {
+  padding: 4px 12px 8px 0;
+  font-weight: 600;
+  text-align: start;
+  white-space: nowrap;
+}
+
+.onec-states-matrix td {
+  padding: 6px 12px 6px 0;
+}

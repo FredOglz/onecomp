@@ -1,4 +1,5 @@
 import type { Preview } from '@storybook/web-components-vite';
+import { figmaDesign } from './figma';
 import { html } from 'lit';
 import '@fontsource/open-sans/400.css';
 import '@fontsource/open-sans/600.css';
@@ -7,6 +8,7 @@ import '@onec/tokens/css';
 import { defineCustomElement as defineButton } from '../dist/components/onec-button.js';
 import { defineCustomElement as defineIcon } from '../dist/components/onec-icon.js';
 import './preview.css';
+import './docs.css';
 
 defineButton();
 defineIcon();
@@ -55,6 +57,33 @@ const preview: Preview = {
     layout: 'fullscreen',
     controls: { expanded: true },
     a11y: { test: 'error' },
+    docs: {
+      // Le code s'affiche sous chaque exemple, à onglets React / Angular / HTML (blocks/Example.tsx) :
+      // on masque le bloc « Show code » par défaut de Storybook, qui ne connaît que le HTML.
+      canvas: { sourceState: 'none' },
+    },
+    // Panneau « Design » : la maquette Figma du composant (surchargé par story).
+    design: figmaDesign('buttonComponentSet'),
+    options: {
+      storySort: {
+        order: [
+          'Introduction',
+          'Démarrer',
+          ['Designers', 'Développeurs React', 'Développeurs Angular', 'HTML'],
+          'Design tokens',
+          [
+            'Vue d’ensemble',
+            'Couleurs',
+            'Typographie',
+            'Espacements et dimensions',
+            'Tokens du Button',
+            'Utiliser les tokens',
+          ],
+          'Composants',
+          ['Button', ['Documentation', '*']],
+        ],
+      },
+    },
   },
 };
 
