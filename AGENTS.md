@@ -51,7 +51,7 @@ Données lisibles par machine, générées au build :
 1. **Contrat d'abord** : toute évolution de l'API ou du comportement commence par `docs/contracts/button.md`.
 2. **Tokens ensuite** : une couleur, une taille ou un espacement se change dans `packages/tokens/src/`, jamais dans le composant. Un token composant pointe toujours vers un sémantique.
 3. **Code** : le composant ne lit que ses tokens `--onec-button-*`.
-4. **Tests et doc** : stories, tests et page MDX dans `packages/components/src/components/onec-button/` et `packages/components/e2e/`.
+4. **Tests et doc** : stories, tests et page MDX dans `packages/components/src/components/onec-button/` et `packages/components/e2e/`. Chaque story déclare son code (`parameters.onec`) pour les onglets React / Angular / HTML et sa maquette (`parameters.design`) ; blocs de doc et nœuds Figma dans `packages/components/.storybook/`. Pages transverses (parcours par profil, tokens) dans `packages/components/src/docs/`.
 
 Règles :
 

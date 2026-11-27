@@ -1,0 +1,98 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { CodeTabs } from '../../../.storybook/blocks/CodeTabs';
+
+<Meta title="Design tokens/Utiliser les tokens" />
+
+# Utiliser les tokens
+
+Pour un écran ou un composant applicatif, utilisez les tokens **sémantiques** (`--onec-color-*`, `--onec-space-*`) : ils suivent le thème.
+Les tokens `--onec-button-*` sont réservés au Button, et les palettes primitives ne s'utilisent pas directement.
+
+## Dans le code
+
+<CodeTabs
+  code={{
+    react: `// main.tsx : une fois pour toute l'application
+import '@onec/tokens/css';
+
+// Dans un composant : les custom properties, en CSS ou en style inline
+export function Card({ children }: { children: React.ReactNode }) {
+return (
+
+<section
+style={{
+        padding: 'var(--onec-space-4)',
+        borderRadius: 'var(--onec-radius-md)',
+        background: 'var(--onec-color-surface-default)',
+        color: 'var(--onec-color-text-default)',
+      }} >
+{children}
+</section>
+);
+}
+
+// Valeurs résolues d'un thème, pour un graphique ou un canvas
+import tokens from '@onec/tokens/json/b2c-light';
+const primary = tokens.color.action.primary.fill; // '#9e00f2'`,
+    angular: `// angular.json > projects.<app>.architect.build.options.styles
+// ["node_modules/@onec/tokens/dist/css/tokens.css"]
+
+@Component({
+selector: 'app-card',
+template: '<ng-content />',
+styles: \`
+:host {
+display: block;
+padding: var(--onec-space-4);
+border-radius: var(--onec-radius-md);
+background: var(--onec-color-surface-default);
+color: var(--onec-color-text-default);
+}
+\`,
+})
+export class Card {}
+
+// En SCSS, valeurs résolues d'un thème (sans changement de thème à l'exécution)
+// @use '@onec/tokens/scss/b2c-light' as t;
+// .legend { color: t.$onec-color-action-primary-fill; }`,
+    html: `<link rel="stylesheet" href="node_modules/@onec/tokens/dist/css/tokens.css" />
+
+<style>
+  .card {
+    padding: var(--onec-space-4);
+    border-radius: var(--onec-radius-md);
+    background: var(--onec-color-surface-default);
+    color: var(--onec-color-text-default);
+  }
+</style>
+
+<div data-brand="b2b" data-theme="dark">
+  <section class="card">…</section>
+</div>`,
+  }}
+/>
+
+## Les sorties
+
+| Import                                | Fichier                             | Usage                                                                 |
+| ------------------------------------- | ----------------------------------- | --------------------------------------------------------------------- |
+| `@onec/tokens/css`                    | `dist/css/tokens.css`               | Custom properties `--onec-*`, thèmes par `data-brand` et `data-theme` |
+| `@onec/tokens/scss/{marque}-{schéma}` | `dist/scss/_{marque}-{schéma}.scss` | Variables Sass résolues pour un thème                                 |
+| `@onec/tokens/json/{marque}-{schéma}` | `dist/json/{marque}-{schéma}.json`  | Valeurs résolues : graphiques, scripts, agents IA                     |
+| `@onec/tokens/figma`                  | `dist/figma/variables.json`         | Collections, modes et alias, lus par l'import Figma                   |
+
+Préférez les custom properties : elles changent avec le thème sans recharger la page. Les sorties SCSS et JSON figent un thème.
+
+## Dans Figma
+
+Les tokens deviennent des variables Figma, réparties en quatre collections. Les alias sont conservés : une variable sémantique pointe vers une variable de marque ou une primitive, comme dans le code.
+
+| Collection | Modes       | Contenu                                                |
+| ---------- | ----------- | ------------------------------------------------------ |
+| Primitives | Default     | Palettes, espacements, rayons, épaisseurs, typographie |
+| Brand      | B2C, B2B    | `brand/primary/*`, `brand/secondary/*`                 |
+| Scheme     | Light, Dark | Couleurs sémantiques et dimensions de contrôle         |
+| Components | Default     | `button/*`, lié au composant Button                    |
+
+Le circuit va du code vers Figma : `pnpm --filter @onec/tokens build` écrit `dist/figma/variables.json`, puis un script l'importe dans le fichier one-comp.
+Écarts connus : pas de `rem` dans Figma (converti en px), interlignage sans unité posé à la main (125 %).

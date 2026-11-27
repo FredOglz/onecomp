@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxFactory": null,
+    "jsxFragmentFactory": null,
+    "resolveJsonModule": true,
+    "noEmit": true
+  },
+  "include": ["./**/*.ts", "./**/*.tsx", "../src/**/*.stories.ts"],
+  "exclude": []
+}

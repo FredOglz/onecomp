@@ -1,0 +1,26 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Scale, SemanticDimensions } from '../../../.storybook/blocks/tokens';
+
+<Meta title="Design tokens/Espacements et dimensions" />
+
+# Espacements et dimensions
+
+## Espacements
+
+Une échelle sur une base de 4 px. Le nom est le multiple de 4 : `space.4` = 16 px, `space.0-5` = 2 px.
+
+<Scale prefix="space." kind="space" />
+
+## Rayons
+
+<Scale prefix="radius." kind="radius" />
+
+## Épaisseurs de trait
+
+<Scale prefix="border-width." kind="border" />
+
+## Dimensions sémantiques
+
+Indépendantes du thème : hauteur des contrôles, espacements internes, rayon, focus. Dans Figma, elles rejoignent la collection **Scheme** avec la même valeur dans les deux modes.
+
+<SemanticDimensions />

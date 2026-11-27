@@ -1,0 +1,54 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { SourceLinks, FigmaLink } from '../../../.storybook/blocks/FigmaLink';
+import { DocLink } from '../../../.storybook/blocks/DocLink';
+
+<Meta title="Démarrer/Designers" />
+
+# Designers
+
+La bibliothèque Figma **one-comp** contient les variables et le composant Button, générés depuis le code.
+Ce Storybook montre le composant réel, celui que les équipes livrent : c'est la référence quand la maquette et le rendu diffèrent.
+
+<SourceLinks figma="cover" />
+
+## Utiliser la bibliothèque
+
+1. Dans Figma, ouvrez **Assets › Bibliothèques** et activez **one-comp**.
+2. Insérez le **Button** et réglez ses propriétés : `Variant`, `Color`, `Size`, `State`, `Icon start`, `Icon end`.
+3. Choisissez le thème avec les modes des collections : **Brand** (B2C, B2B) et **Scheme** (Light, Dark), sur le cadre de l'écran.
+
+| Page du fichier | Contenu                                                                                                                                                                       |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Button          | <FigmaLink node="buttonPresentation">Présentation</FigmaLink> <FigmaLink node="buttonThemes">4 thèmes</FigmaLink> <FigmaLink node="buttonComponent">378 variantes</FigmaLink> |
+| Icônes          | <FigmaLink node="icons">Icônes Lucide</FigmaLink>                                                                                                                             |
+
+## Retrouver la maquette dans Storybook
+
+- Ouvrez une story du Button, puis l'onglet **Design** du panneau du bas : la maquette Figma s'affiche à côté du rendu.
+- La barre d'outils change la marque et le schéma, comme les modes Figma.
+- La story **Matrice des états** reprend la grille des variantes de Figma : variantes × couleurs × états.
+
+## Mêmes noms des deux côtés
+
+| Figma                            | Code                                      |
+| -------------------------------- | ----------------------------------------- |
+| Propriété `Variant=Contained`    | `variant="contained"`                     |
+| Propriété `Color=Primary`        | `color="primary"`                         |
+| Propriété `Size=Medium`          | `size="medium"`                           |
+| `State=Disabled`, `Loading`      | `disabled`, `loading`                     |
+| `State=Hover`, `Active`, `Focus` | Rien à écrire : le navigateur s'en charge |
+| Variable `button/height/medium`  | Token `--onec-button-height-medium`       |
+| Mode Brand `B2B` + Scheme `Dark` | `data-brand="b2b" data-theme="dark"`      |
+
+Les variables Figma portent le chemin du token, avec des barres obliques : `color/action/primary/fill` dans Figma, `--onec-color-action-primary-fill` en CSS.
+Chaque page de la section <DocLink path="/docs/design-tokens-vue-d-ensemble--documentation">Design tokens</DocLink> donne les deux noms.
+
+## Proposer une évolution
+
+Le code est la source, Figma est régénéré ensuite. Pour changer une couleur, une taille ou un comportement :
+
+1. Décrivez le besoin dans une issue GitHub, avec une capture ou un lien vers une exploration Figma.
+2. L'évolution passe par le [contrat du Button](https://github.com/FredOglz/onecomp/blob/main/docs/contracts/button.md), puis les tokens, puis le code.
+3. Les contrastes AA sont vérifiés automatiquement dans les 4 thèmes ; la bibliothèque Figma est republiée avec le même numéro de version que le code.
+
+Une modification faite directement dans la bibliothèque Figma serait écrasée à la prochaine génération.

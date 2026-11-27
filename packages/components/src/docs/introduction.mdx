@@ -1,10 +1,66 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { Profiles } from '../../.storybook/blocks/DocLink';
+import { SourceLinks } from '../../.storybook/blocks/FigmaLink';
 
 <Meta title="Introduction" />
 
 # onec
 
 Un composant de design system, de bout en bout : contrat, tokens, code, tests, documentation, Figma et publication.
+Ce Storybook est la documentation commune aux designers et aux développeurs : chaque page relie le rendu, le code et la maquette Figma.
+
+<SourceLinks
+  figma="cover"
+  links={[
+    { label: 'Code source', href: 'https://github.com/FredOglz/onecomp' },
+    {
+      label: 'Contrat du Button',
+      href: 'https://github.com/FredOglz/onecomp/blob/main/docs/contracts/button.md',
+    },
+    { label: 'Releases', href: 'https://github.com/FredOglz/onecomp/releases' },
+  ]}
+/>
+
+## Par où commencer
+
+<Profiles
+  items={[
+    {
+      path: '/docs/démarrer-designers--documentation',
+      title: 'Designer',
+      text: 'La bibliothèque Figma, les variables, les règles d’usage et comment proposer une évolution.',
+    },
+    {
+      path: '/docs/démarrer-développeurs-react--documentation',
+      title: 'Développeur React',
+      text: 'Installer @onec/react, poser le thème, gérer les événements et les formulaires.',
+    },
+    {
+      path: '/docs/démarrer-développeurs-angular--documentation',
+      title: 'Développeur Angular',
+      text: 'Installer @onec/angular, composants standalone, liaisons et formulaires.',
+    },
+    {
+      path: '/docs/design-tokens-vue-d-ensemble--documentation',
+      title: 'Design tokens',
+      text: 'Couleurs, typographie, espacements, les 4 thèmes et le lien avec les variables Figma.',
+    },
+  ]}
+/>
+
+## Ce que contient ce Storybook
+
+| Section           | Contenu                                                                                    |
+| ----------------- | ------------------------------------------------------------------------------------------ |
+| **Démarrer**      | Un parcours par profil : designers, React, Angular, HTML                                   |
+| **Design tokens** | Les trois niveaux de tokens, leurs valeurs dans les 4 thèmes, et leur nom dans Figma       |
+| **Composants**    | Une page de doc par composant, puis ses stories : rendu, contrôles, code et maquette Figma |
+
+Dans chaque page de composant, le code s'affiche **en React, Angular ou HTML** : le choix se fait une fois et vaut pour toutes les pages.
+Dans chaque story, l'onglet **Design** du panneau du bas montre la maquette Figma à côté du rendu.
+La marque (B2C, B2B) et le schéma (clair, sombre) se changent dans la barre d'outils, en haut.
+
+## Les paquets
 
 | Paquet             | Rôle                                                    |
 | ------------------ | ------------------------------------------------------- |
@@ -14,8 +70,6 @@ Un composant de design system, de bout en bout : contrat, tokens, code, tests, d
 | `@onec/react`      | Wrappers React générés                                  |
 | `@onec/angular`    | Composants Angular standalone générés                   |
 
-La marque et le schéma se changent dans la barre d'outils, en haut de chaque story.
+Un seul composant, écrit une fois en Web Component : les versions React et Angular sont générées à chaque build, elles ne divergent jamais.
 
-- Code source : [github.com/FredOglz/onecomp](https://github.com/FredOglz/onecomp)
-- Contrat du Button : [docs/contracts/button.md](https://github.com/FredOglz/onecomp/blob/main/docs/contracts/button.md)
 - Décisions d'architecture : [docs/adr](https://github.com/FredOglz/onecomp/tree/main/docs/adr)

@@ -1,0 +1,37 @@
+import { Meta, Source } from '@storybook/addon-docs/blocks';
+import { DocLink } from '../../../.storybook/blocks/DocLink';
+
+<Meta title="Démarrer/HTML" />
+
+# HTML et autres frameworks
+
+`<onec-button>` est un Web Component standard : il marche sans framework, et dans Vue, Svelte ou un CMS.
+
+<Source
+  dark
+  language="html"
+  code={`<link rel="stylesheet" href="node_modules/@onec/tokens/dist/css/tokens.css" />
+<script type="module" src="node_modules/@onec/components/loader/index.js"></script>
+
+<body data-brand="b2c" data-theme="light">
+  <onec-button variant="contained" color="primary">
+    <onec-icon slot="icon-start" name="check"></onec-icon>
+    Enregistrer
+  </onec-button>
+</body>`}
+/>
+
+Avec un bundler, on peut charger les éléments un par un :
+
+<Source
+  dark
+  language="typescript"
+  code={`import { defineCustomElement as defineButton } from '@onec/components/components/onec-button.js';
+import { defineCustomElement as defineIcon } from '@onec/components/components/onec-icon.js';
+
+defineButton();
+defineIcon();`}
+/>
+
+La complétion des balises dans VS Code est fournie par `@onec/components/dist/vscode-data.json`.
+Voir la <DocLink path="/docs/composants-button--documentation">page du Button</DocLink>, onglet **HTML**.

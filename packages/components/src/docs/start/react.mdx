@@ -1,0 +1,70 @@
+import { Meta, Source } from '@storybook/addon-docs/blocks';
+import { DocLink } from '../../../.storybook/blocks/DocLink';
+
+<Meta title="Démarrer/Développeurs React" />
+
+# Développeurs React
+
+`@onec/react` expose chaque Web Component comme un composant React typé : `OnecButton`, `OnecIcon`.
+Les wrappers sont générés à chaque build depuis le composant Stencil : mêmes propriétés, mêmes événements.
+
+## Installer
+
+Les archives des paquets sont jointes à chaque [release GitHub](https://github.com/FredOglz/onecomp/releases).
+
+<Source
+  dark
+  language="bash"
+  code={`pnpm add ./onec-react-0.1.0.tgz ./onec-components-0.1.0.tgz ./onec-tokens-0.1.0.tgz ./onec-icons-0.1.0.tgz`}
+/>
+
+## Poser les tokens et le thème
+
+<Source
+  dark
+  language="tsx"
+  code={`// main.tsx
+import '@onec/tokens/css';
+
+// App.tsx : data-brand et data-theme toujours ensemble, sur le même élément
+export function App() {
+return (
+
+<main data-brand="b2c" data-theme="light">
+…
+</main>
+);
+}`}
+/>
+
+## Utiliser le Button
+
+<Source
+  dark
+  language="tsx"
+  code={`import { OnecButton, OnecIcon } from '@onec/react';
+
+<OnecButton variant="outlined" color="neutral" size="large" onClick={download}>
+  <OnecIcon slot="icon-start" name="download" />
+  Télécharger
+</OnecButton>`}
+/>
+
+| Propriété React       | Type                                                                                   | Défaut        |
+| --------------------- | -------------------------------------------------------------------------------------- | ------------- |
+| `variant`             | `'contained' \| 'outlined' \| 'ghost'`                                                 | `'contained'` |
+| `color`               | `'primary' \| 'secondary' \| 'neutral' \| 'success' \| 'warning' \| 'error' \| 'info'` | `'primary'`   |
+| `size`                | `'small' \| 'medium' \| 'large'`                                                       | `'medium'`    |
+| `disabled`, `loading` | `boolean`                                                                              | `false`       |
+| `type`                | `'button' \| 'submit' \| 'reset'`                                                      | `'button'`    |
+| `name`, `value`       | `string`                                                                               | —             |
+
+- **Événements** : `onClick` comme sur un bouton natif. Il n'est pas déclenché quand le bouton est `disabled` ou `loading`.
+- **Formulaires** : `type="submit"` envoie le `<form>` parent avec `name` et `value`, `type="reset"` le réinitialise.
+- **Icônes** : `<OnecIcon slot="icon-start" />` ou `slot="icon-end"`. Les noms disponibles sont listés dans `packages/icons/icons.json` du dépôt.
+
+## Aller plus loin
+
+- La <DocLink path="/docs/composants-button--documentation">page du Button</DocLink> montre chaque exemple avec son code React : sélectionnez l'onglet **React** une fois, il reste choisi.
+- Les tokens sont aussi lisibles depuis le code : voir <DocLink path="/docs/design-tokens-utiliser-les-tokens--documentation">Utiliser les tokens</DocLink>.
+- Une démo complète est dans `apps/react-demo` du dépôt.
